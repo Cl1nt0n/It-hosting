@@ -1,0 +1,17 @@
+﻿<Window x:Class="It_hosting_2._0.View.UserProfileView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:It_hosting_2._0.View"
+        mc:Ignorable="d"
+        Title="UserProfileView" Height="900" Width="1600">
+    <Grid Margin="10">
+        <StackPanel>
+            <Image Source="{Binding Path=Image}" Width="300" HorizontalAlignment="Left" Margin ="100 90"></Image>
+            <Button></Button>
+            <Button FontSize ="50" Content="repositories"/>
+            <Button FontSize ="50" Margin="650 90">repositories</Button>
+        </StackPanel>
+    </Grid>
+</Window>
