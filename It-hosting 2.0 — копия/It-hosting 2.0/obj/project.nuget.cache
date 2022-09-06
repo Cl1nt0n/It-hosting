@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "T9hCKEpzAYnQI/2euk7fYH2MmIz5MuaVH5Rk60rhiw5evAydQb+XFbAaXG9ufEuOb5jdC2mBW7PCPYQFzwNZLA==",
+  "dgSpecHash": "OKd+16G63vrNzyqaMi+NqwCjX5RGhPUDL8UmX+UwbRBKohk7XIU//ErwowafkJCTsBKAJDLe6bxiOmSjbsevnw==",
   "success": true,
-  "projectFilePath": "D:\\clessons\\It-hosting 2.0 — копия\\It-hosting 2.0\\It-hosting 2.0.csproj",
+  "projectFilePath": "D:\\repositories\\It-hosting 2.0 — копия\\It-hosting 2.0\\It-hosting 2.0.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\igorc\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\igorc\\.nuget\\packages\\microsoft.data.sqlite.core\\6.0.8\\microsoft.data.sqlite.core.6.0.8.nupkg.sha512",
