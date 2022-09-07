@@ -1,0 +1,19 @@
+﻿<Window x:Class="It_hosting_2._0.View.CreatingRepositoryView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:It_hosting_2._0.View"
+        mc:Ignorable="d"
+        Title="CreatingRepositoryView" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <Label FontSize="20">Title</Label>
+            <TextBox FontSize="20" Text="{Binding Title}"></TextBox>
+            <Label FontSize="20">Description</Label>
+            <TextBox FontSize="50" Text="{Binding Description}"></TextBox>
+            <Label>IsPrivate</Label>
+            <CheckBox Checked="{Binding IsPrivate}"></CheckBox>
+        </StackPanel>
+    </Grid>
+</Window>

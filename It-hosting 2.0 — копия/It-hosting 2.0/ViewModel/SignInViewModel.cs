@@ -16,7 +16,7 @@ namespace It_hosting_2._0.ViewModel
     internal class SignInViewModel
     {
         private CommandTemplate _signingInCommand;
-        private CommandTemplate _signuppingCommand;
+        private CommandTemplate _signingUpCommand;
         private string _login;
         private string _password;
         private Window _window;
@@ -46,19 +46,19 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
-        public CommandTemplate SigningupCommand
+        public CommandTemplate SigningUpCommand
         {
             get
             {
-                if (_signuppingCommand == null)
+                if (_signingUpCommand == null)
                 {
-                    _signuppingCommand = new CommandTemplate(obj =>
+                    _signingUpCommand = new CommandTemplate(obj =>
                     {
                         OpenSignUpView();
                     });
                 }
 
-                return _signuppingCommand;
+                return _signingUpCommand;
             }
         }
 
@@ -73,7 +73,7 @@ namespace It_hosting_2._0.ViewModel
                         User user;
                         SignIn(out user);
 
-                        OpenUserProfileView();
+                        OpenUserProfileView(user);
                         //if (user == null)
                         //{
                         //    MessageBox.Show("Неправильный логин или пароль !");
@@ -89,14 +89,14 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
-        private void OpenUserProfileView()
+        private void OpenUserProfileView(User user)
         {
             UserProfileView userProfileView = new UserProfileView();
-            UserProfileViewModel userProfileViewModel = new UserProfileViewModel();
+            UserProfileViewModel userProfileViewModel = new UserProfileViewModel(userProfileView, user);
 
             _window.Hide();
 
-            userProfileView.DataContext = userProfileView;
+            userProfileView.DataContext = userProfileViewModel;
             userProfileView.ShowDialog();
 
             _window.Show();

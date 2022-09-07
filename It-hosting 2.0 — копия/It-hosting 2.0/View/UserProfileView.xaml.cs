@@ -1,6 +1,9 @@
-﻿using System;
+﻿using It_hosting_2._0.Models.DBModels;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,6 +22,7 @@ namespace It_hosting_2._0.View
     /// </summary>
     public partial class UserProfileView : Window
     {
+        
         public UserProfileView()
         {
             InitializeComponent();

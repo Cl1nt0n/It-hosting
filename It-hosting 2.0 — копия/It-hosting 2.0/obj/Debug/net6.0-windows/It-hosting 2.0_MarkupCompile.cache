@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\clessons\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\
+C:\Users\igorc\Desktop\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\
 It_hosting_2._0
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\clessons\It-hosting 2.0 — копия\It-hosting 2.0\App.xaml
-31416870195
+C:\Users\igorc\Desktop\It-hosting 2.0 — копия\It-hosting 2.0\App.xaml
+51109493407
 
-16-1903285752
+20-184738252
 2141334755679
-View\SignInView.xaml;View\SignUpView.xaml;View\UserProfileView.xaml;
+View\CreatingRepositoryView.xaml;View\RepositoriesView.xaml;View\SignInView.xaml;View\SignUpView.xaml;View\UserProfileView.xaml;
 
 False
 

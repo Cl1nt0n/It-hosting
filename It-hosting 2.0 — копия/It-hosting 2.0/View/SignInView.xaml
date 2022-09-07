@@ -40,7 +40,7 @@
             <TextBox Grid.Column="3" Grid.Row="5" Text="Login" TextAlignment="Center"/>
             <TextBox Grid.Column="3" Grid.Row="6" Text="Password" TextAlignment="Center" />
             <Button Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="2" Command="{Binding SigningInCommand}">Enter</Button>
-            <Button Grid.Column="5" Grid.Row="7" Grid.ColumnSpan="2" Command="{Binding SigningupCommand}">Create account</Button>
+            <Button Grid.Column="5" Grid.Row="7" Grid.ColumnSpan="2" Command="{Binding SigningUpCommand}">Create account</Button>
             <TextBox Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="3" Grid.RowSpan="1" Text="{Binding Path=Login}"/>
             <TextBox Grid.Column="4" Grid.Row="6" Grid.ColumnSpan="3" Grid.RowSpan="1" Text="{Binding Path=Password}"/>
         </Grid>

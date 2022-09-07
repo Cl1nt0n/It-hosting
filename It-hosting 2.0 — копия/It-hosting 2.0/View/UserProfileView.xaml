@@ -7,11 +7,53 @@
         mc:Ignorable="d"
         Title="UserProfileView" Height="900" Width="1600">
     <Grid Margin="10">
-        <StackPanel>
-            <Image Source="{Binding Path=Image}" Width="300" HorizontalAlignment="Left" Margin ="100 90"></Image>
-            <Button></Button>
-            <Button FontSize ="50" Content="repositories"/>
-            <Button FontSize ="50" Margin="650 90">repositories</Button>
-        </StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="1" FontSize="50" Grid.ColumnSpan="5" Grid.Column="1" Command="{Binding OpeningRepositoriesCommand}">Repositories</Button>
+            </Grid>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="1" FontSize="50" Grid.ColumnSpan="5" Grid.Column="1" Content="{Binding UserName}"></Label>
+                <Label Grid.Row="2" FontSize="30" Grid.ColumnSpan="5" Grid.Column="1" Content="{Binding Login}"></Label>
+            </Grid>
+        </Grid>
+        
     </Grid>
 </Window>

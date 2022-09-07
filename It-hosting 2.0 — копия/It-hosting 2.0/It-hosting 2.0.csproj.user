@@ -7,6 +7,12 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="View\CreatingRepositoryView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\RepositoriesView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\SignInView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -18,6 +24,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="View\CreatingRepositoryView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\RepositoriesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\SignInView.xaml">
       <SubType>Designer</SubType>
     </Page>
