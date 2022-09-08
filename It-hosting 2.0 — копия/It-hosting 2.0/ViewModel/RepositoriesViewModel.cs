@@ -17,9 +17,6 @@ namespace It_hosting_2._0.ViewModel
         private CommandTemplate _openingCreatingRepositoryCommand;
         private Window _window;
         private User _user;
-        private string _title;
-        private string _description;
-        private bool _isPrivate;
 
         public RepositoriesViewModel(Window window, User user)
         {
@@ -56,7 +53,7 @@ namespace It_hosting_2._0.ViewModel
         private void OpenCreatingRepositoryWindow()
         {
             CreatingRepositoryView creatingRepositoryView = new CreatingRepositoryView();
-            CreatingRepositoryViewModel creatingRepositoryViewModel = new CreatingRepositoryViewModel();
+            CreatingRepositoryViewModel creatingRepositoryViewModel = new CreatingRepositoryViewModel(creatingRepositoryView, User);
 
             _window.Hide();
 

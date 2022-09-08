@@ -39,10 +39,10 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <TextBox Grid.Column="3" Grid.Row="5" Text="Login" TextAlignment="Center"/>
-            <TextBox Grid.Column="3" Grid.Row="6" Text="Nickname" TextAlignment="Center" />
-            <TextBox Grid.Column="3" Grid.Row="7" Text="Password" TextAlignment="Center" />
-            <TextBox Grid.Column="3" Grid.Row="8" Text="Repeat Password" TextAlignment="Center" FontSize="11"/>
+            <TextBlock Grid.Column="3" Grid.Row="5" Text="Login" TextAlignment="Center" Background="White"/>
+            <TextBlock Grid.Column="3" Grid.Row="6" Text="Nickname" TextAlignment="Center" Background="White"/>
+            <TextBlock Grid.Column="3" Grid.Row="7" Text="Password" TextAlignment="Center" Background="White"/>
+            <TextBlock Grid.Column="3" Grid.Row="8" Text="Repeat Password" TextAlignment="Center" FontSize="10" Background="White"/>
             <Button Grid.Column="3" Grid.Row="9" Grid.ColumnSpan="4" Command="{Binding AddUserCommand}">Create account</Button>
             <TextBox Text="{Binding Path=Login}" Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="3" Grid.RowSpan="1"/>
             <TextBox Text="{Binding Path=Password}" Grid.Column="4" Grid.Row="7" Grid.ColumnSpan="3" Grid.RowSpan="1"/>

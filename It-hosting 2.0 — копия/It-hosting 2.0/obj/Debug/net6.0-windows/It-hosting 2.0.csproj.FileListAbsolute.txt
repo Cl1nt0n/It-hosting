@@ -193,3 +193,70 @@ C:\Users\igorc\Desktop\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\ne
 C:\Users\igorc\Desktop\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\ref\It-hosting 2.0.dll
 C:\Users\igorc\Desktop\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\CreatingRepositoryView.g.cs
 C:\Users\igorc\Desktop\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\CreatingRepositoryView.baml
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\It-hosting 2.0.exe
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\It-hosting 2.0.deps.json
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\It-hosting 2.0.runtimeconfig.json
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\It-hosting 2.0.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\It-hosting 2.0.pdb
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\Humanizer.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\Microsoft.Data.Sqlite.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Design.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Relational.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Sqlite.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\Microsoft.Extensions.Caching.Memory.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyModel.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\Microsoft.Extensions.Options.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\Microsoft.Extensions.Primitives.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\MySqlConnector.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\Pomelo.EntityFrameworkCore.MySql.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\SQLitePCLRaw.batteries_v2.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\SQLitePCLRaw.core.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\SQLitePCLRaw.provider.e_sqlite3.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\runtimes\alpine-x64\native\libe_sqlite3.so
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\runtimes\linux-arm\native\libe_sqlite3.so
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\runtimes\linux-arm64\native\libe_sqlite3.so
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\runtimes\linux-armel\native\libe_sqlite3.so
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\runtimes\linux-mips64\native\libe_sqlite3.so
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\runtimes\linux-musl-x64\native\libe_sqlite3.so
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\runtimes\linux-s390x\native\libe_sqlite3.so
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\runtimes\linux-x64\native\libe_sqlite3.so
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\runtimes\linux-x86\native\libe_sqlite3.so
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\runtimes\osx-arm64\native\libe_sqlite3.dylib
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\runtimes\osx-x64\native\libe_sqlite3.dylib
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\runtimes\win-arm\native\e_sqlite3.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\runtimes\win-arm64\native\e_sqlite3.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\runtimes\win-x64\native\e_sqlite3.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\bin\Debug\net6.0-windows\runtimes\win-x86\native\e_sqlite3.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\It-hosting 2.0.csproj.AssemblyReference.cache
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\CreatingRepositoryView.g.cs
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\RepositoriesView.g.cs
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\SignInView.g.cs
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\SignUpView.g.cs
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\UserProfileView.g.cs
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\App.g.cs
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\It-hosting 2.0_MarkupCompile.cache
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\It-hosting 2.0_MarkupCompile.lref
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\CreatingRepositoryView.baml
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\RepositoriesView.baml
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\SignInView.baml
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\SignUpView.baml
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\UserProfileView.baml
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\It-hosting 2.0.g.resources
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\It-hosting 2.0.GeneratedMSBuildEditorConfig.editorconfig
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\It-hosting 2.0.AssemblyInfoInputs.cache
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\It-hosting 2.0.AssemblyInfo.cs
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\It-hosting 2.0.csproj.CoreCompileInputs.cache
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\It-hosting 2.0.csproj.CopyComplete
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\It-hosting 2.0.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\refint\It-hosting 2.0.dll
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\It-hosting 2.0.pdb
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\It-hosting 2.0.genruntimeconfig.cache
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\ref\It-hosting 2.0.dll

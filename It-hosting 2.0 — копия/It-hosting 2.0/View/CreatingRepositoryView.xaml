@@ -9,11 +9,12 @@
     <Grid>
         <StackPanel>
             <Label FontSize="20">Title</Label>
-            <TextBox FontSize="20" Text="{Binding Title}"></TextBox>
+            <TextBox FontSize="20" Text="{Binding Path=Title}"></TextBox>
             <Label FontSize="20">Description</Label>
-            <TextBox FontSize="50" Text="{Binding Description}"></TextBox>
-            <Label>IsPrivate</Label>
-            <CheckBox Checked="{Binding IsPrivate}"></CheckBox>
+            <TextBox FontSize="20" Height="100" Text="{Binding Path=Description}"></TextBox>
+            <Label FontSize="20">IsPrivate</Label>
+            <CheckBox IsChecked="{Binding Path=IsPrivate}"></CheckBox>
+            <Button Margin="300 100 300 100" FontSize="35" Command="{Binding CreatingRepositoryCommand}">Create</Button>
         </StackPanel>
     </Grid>
 </Window>
