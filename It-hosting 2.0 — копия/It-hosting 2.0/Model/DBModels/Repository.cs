@@ -15,10 +15,8 @@ namespace It_hosting_2._0.Models.DBModels
         public int UserId { get; set; }
         public string Title { get; set; } = null!;
         public string? Description { get; set; }
-        public int MainBranchId { get; set; }
         public bool IsPrivate { get; set; }
 
-        public virtual Branch MainBranch { get; set; } = null!;
         public virtual User User { get; set; } = null!;
         public virtual ICollection<Branch> Branches { get; set; }
         public virtual ICollection<Collaborator> Collaborators { get; set; }

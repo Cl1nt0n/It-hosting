@@ -2,6 +2,7 @@
 using It_hosting_2._0.Models.DBModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -20,7 +21,9 @@ namespace It_hosting_2._0.ViewModel
         private Window _window;
         private User _user;
 
+#pragma warning disable CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
         public CreatingRepositoryViewModel(Window window, User user)
+#pragma warning restore CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
         {
             _window = window;
             User = user;
@@ -35,7 +38,6 @@ namespace It_hosting_2._0.ViewModel
                 OnPropertyChanged(nameof(User));
             }
         }
-
         public string Description
         {
             get => _description;
@@ -78,7 +80,9 @@ namespace It_hosting_2._0.ViewModel
                     });
                 }
 
+#pragma warning disable CS8603 // Возможно, возврат ссылки, допускающей значение NULL.
                 return _creatingRepositoryCommand;
+#pragma warning restore CS8603 // Возможно, возврат ссылки, допускающей значение NULL.
             }
         }
 
@@ -87,10 +91,11 @@ namespace It_hosting_2._0.ViewModel
             using (ithostingContext db = new ithostingContext())
             {
                 Repository repository = new Repository();
-                Branch branch = new Branch();
-                repository = new Repository { UserId = _user.Id, Title = _title, Description = _description, IsPrivate = _isPrivate, MainBranchId = branch.Id };
-                repository.MainBranchId = branch.Id;
+                repository = new Repository { UserId = _user.Id, Title = _title, Description = _description, IsPrivate = _isPrivate};
                 db.Repositories.Add(repository);
+                db.SaveChanges();
+                Branch branch = new Branch { Title = "Main", RepositoryId = repository.Id };
+                db.Branches.Add(branch);
                 db.SaveChanges();
 
                 MessageBox.Show("Репозиторий создан.");

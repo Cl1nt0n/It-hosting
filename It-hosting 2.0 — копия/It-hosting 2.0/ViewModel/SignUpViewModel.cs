@@ -68,21 +68,12 @@ namespace It_hosting_2._0.ViewModel
         {
             get
             {
-                if (_addUserCommand == null && string.IsNullOrWhiteSpace(_login) && string.IsNullOrWhiteSpace(_userName)
-                    && string.IsNullOrWhiteSpace(_password))
+                if (_addUserCommand == null)
                 {
-                    if (_password == _confrimPassword)
+                    _addUserCommand = new CommandTemplate(obj =>
                     {
-                        _addUserCommand = new CommandTemplate(obj =>
-                        {
-                            AddUser();
-                        });
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Поля не должны быть пустыми !");
-                    return null;
+                        AddUser();
+                    });
                 }
 
                 return _addUserCommand;
@@ -95,13 +86,22 @@ namespace It_hosting_2._0.ViewModel
         {
             using (ithostingContext db = new ithostingContext())
             {
-                User user = new User();
+                if (string.IsNullOrWhiteSpace(_login) && string.IsNullOrWhiteSpace(_userName)
+                    && string.IsNullOrWhiteSpace(_password))
+                {
+                    if (_password == _confrimPassword)
+                    {
+                        User user = new User { Login = _login, Password = _password, Nickname = _userName };
+                        db.Users.Add(user);
+                        db.SaveChanges();
 
-                user = new User { Login = _login, Password = _password, Nickname = _userName };
-                db.Users.Add(user);
-                db.SaveChanges();
-
-                MessageBox.Show("Пользователь добавлен успешно !");
+                        MessageBox.Show("Пользователь добавлен успешно !");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Поля не должны быть пустыми !");
+                }
             }
         }
 

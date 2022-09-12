@@ -3,6 +3,7 @@ using It_hosting_2._0.Models.DBModels;
 using It_hosting_2._0.View;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -17,11 +18,18 @@ namespace It_hosting_2._0.ViewModel
         private CommandTemplate _openingCreatingRepositoryCommand;
         private Window _window;
         private User _user;
+        private ICollection<Repository> _repositories;
 
+#pragma warning disable CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
         public RepositoriesViewModel(Window window, User user)
+#pragma warning restore CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
         {
             _window = window;
             _user = user;
+            using (ithostingContext db = new ithostingContext())
+            {
+                _repositories = db.Repositories.Where(x => x.UserId == User.Id).ToList();
+            }
         }
 
         public User User
@@ -31,6 +39,16 @@ namespace It_hosting_2._0.ViewModel
             {
                 _user = value;
                 OnPropertyChanged(nameof(User));
+            }
+        }
+
+        public ICollection<Repository> Repositories
+        {
+            get => _repositories;
+            set
+            {
+                _repositories = value;
+                OnPropertyChanged(nameof(Repositories));
             }
         }
 
@@ -62,16 +80,6 @@ namespace It_hosting_2._0.ViewModel
 
             _window.Show();
         }
-
-        //private void AddRepository()
-        //{
-        //    using (ithostingContext db = new ithostingContext())
-        //    {
-        //        Repository repository = new Repository { };
-
-
-        //    }
-        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
 

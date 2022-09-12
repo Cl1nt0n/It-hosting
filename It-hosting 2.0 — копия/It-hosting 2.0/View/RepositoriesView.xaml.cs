@@ -23,7 +23,6 @@ namespace It_hosting_2._0.View
     public partial class RepositoriesView : Window
     {
         private List<Button> _buttons = new List<Button>();
-        private User _user;
 
         public RepositoriesView()
         {
@@ -33,25 +32,11 @@ namespace It_hosting_2._0.View
             {
                 List<Repository> repositories = db.Repositories.ToList();
 
-                //foreach (var item in CategoryWrapPanel.Children)
-                //{
-                //    if (item is Button button)
-                //    {
-                //        _buttons.Add(button);
-                //    }
-                //}
-
-                //User = user;
-            }
-        }
-
-        public User User
-        {
-            get => _user;
-            set
-            {
-                _user = value;
-                OnPropertyChanged(nameof(User));
+                foreach (var item in repositories)
+                {
+                    Button button = new Button { Content = $"{item.Title}" };
+                    _buttons.Add(button);
+                }
             }
         }
 

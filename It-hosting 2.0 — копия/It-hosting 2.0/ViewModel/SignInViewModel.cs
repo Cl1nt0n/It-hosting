@@ -19,6 +19,7 @@ namespace It_hosting_2._0.ViewModel
         private CommandTemplate _signingUpCommand;
         private string _login;
         private string _password;
+        private User _user;
         private Window _window;
 
         public SignInViewModel(Window window)
@@ -46,6 +47,16 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
+        public User User
+        {
+            get => _user;
+            set
+            {
+                _user = value;
+                OnPropertyChanged(nameof(User));
+            }
+        }
+
         public CommandTemplate SigningUpCommand
         {
             get
@@ -70,18 +81,8 @@ namespace It_hosting_2._0.ViewModel
                 {
                     _signingInCommand = new CommandTemplate(obj =>
                     {
-                        User user;
-                        SignIn(out user);
-
-                        OpenUserProfileView(user);
-                        //if (user == null)
-                        //{
-                        //    MessageBox.Show("Неправильный логин или пароль !");
-                        //}
-                        //else
-                        //{
-                        //    OpenUserProfileView();
-                        //}
+                        User = CanSignIn(User);
+                        OpenUserProfileView(User);
                     });
                 }
 
@@ -89,25 +90,33 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private void OpenUserProfileView(User user)
         {
-            UserProfileView userProfileView = new UserProfileView();
-            UserProfileViewModel userProfileViewModel = new UserProfileViewModel(userProfileView, user);
+            if (user != null)
+            {
+                UserProfileView userProfileView = new UserProfileView();
+                UserProfileViewModel userProfileViewModel = new UserProfileViewModel(userProfileView, user);
 
-            _window.Hide();
+                _window.Hide();
 
-            userProfileView.DataContext = userProfileViewModel;
-            userProfileView.ShowDialog();
+                userProfileView.DataContext = userProfileViewModel;
+                userProfileView.ShowDialog();
 
-            _window.Show();
+                _window.Show();
+            }
+            else
+            {
+                MessageBox.Show("не");
+            }
         }
 
-        public void SignIn(out User user)
+        public User CanSignIn(User user)
         {
             using (ithostingContext db = new ithostingContext())
             {
                 user = null;
-
                 List<User> users = db.Users.ToList();
 
                 if (Login != null && Password != null)
@@ -117,9 +126,12 @@ namespace It_hosting_2._0.ViewModel
                         if (item.Login == Login && item.Password == Password)
                         {
                             user = item;
+                            return user;
                         }
                     }
                 }
+
+                return null;
             }
         }
 
@@ -136,11 +148,7 @@ namespace It_hosting_2._0.ViewModel
             _window.Show();
         }
 
-        public void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) { }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

@@ -90,9 +90,7 @@ namespace It_hosting_2._0.ViewModel
             _window.Show();
         }
 
-        public void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-        }
+        public void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) { }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

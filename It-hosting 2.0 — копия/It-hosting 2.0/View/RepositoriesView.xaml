@@ -12,10 +12,16 @@
             <RowDefinition Height="5*"></RowDefinition>
         </Grid.RowDefinitions>
         <Button FontSize="30" Command="{Binding OpeningCreatingRepositoryCommand}">Create Repository</Button>
-        <StackPanel>
-            <WrapPanel x:Name="RepositoriesWrapPanel">
-                
-            </WrapPanel>
+        <StackPanel Grid.Row="1">
+            <ListBox ItemsSource="{Binding Repositories}" Grid.Column="1" HorizontalContentAlignment="Stretch">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="10" HorizontalAlignment="{Binding Alignment}">
+                            <TextBlock Text="{Binding Path=Title}" Margin="4"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
     </Grid>
 </Window>

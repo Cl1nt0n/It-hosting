@@ -51,6 +51,10 @@ namespace It_hosting_2._0.Models.DBModels
 
                 entity.Property(e => e.RepositoryId).HasColumnName("repository_id");
 
+                entity.Property(e => e.Title)
+                    .HasMaxLength(255)
+                    .HasColumnName("title");
+
                 entity.HasOne(d => d.Repository)
                     .WithMany(p => p.Branches)
                     .HasForeignKey(d => d.RepositoryId)
@@ -137,8 +141,6 @@ namespace It_hosting_2._0.Models.DBModels
             {
                 entity.ToTable("repositories");
 
-                entity.HasIndex(e => e.MainBranchId, "FK_repositories_main_branch_id");
-
                 entity.HasIndex(e => e.UserId, "FK_repositories_user_id");
 
                 entity.HasIndex(e => new { e.Id, e.UserId }, "UK_repositories")
@@ -153,19 +155,11 @@ namespace It_hosting_2._0.Models.DBModels
 
                 entity.Property(e => e.IsPrivate).HasColumnName("isPrivate");
 
-                entity.Property(e => e.MainBranchId).HasColumnName("main_branch_id");
-
                 entity.Property(e => e.Title)
                     .HasMaxLength(255)
                     .HasColumnName("title");
 
                 entity.Property(e => e.UserId).HasColumnName("user_id");
-
-                entity.HasOne(d => d.MainBranch)
-                    .WithMany(p => p.Repositories)
-                    .HasForeignKey(d => d.MainBranchId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_repositories_main_branch_id");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Repositories)
