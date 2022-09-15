@@ -1,6 +1,7 @@
 ﻿using It_hosting_2._0.Model.Tools;
 using It_hosting_2._0.Models.DBModels;
 using It_hosting_2._0.View;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,9 +17,11 @@ namespace It_hosting_2._0.ViewModel
     internal class RepositoriesViewModel
     {
         private CommandTemplate _openingCreatingRepositoryCommand;
+        private CommandTemplate _addRepositoryToListBox;
         private Window _window;
         private User _user;
         private ICollection<Repository> _repositories;
+        private ObservableCollection<RepositoryStackPanelViewModel> _myRepositories;
 
 #pragma warning disable CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
         public RepositoriesViewModel(Window window, User user)
@@ -30,6 +33,11 @@ namespace It_hosting_2._0.ViewModel
             {
                 _repositories = db.Repositories.Where(x => x.UserId == User.Id).ToList();
             }
+            MyRepositories = new ObservableCollection<RepositoryStackPanelViewModel>();
+            foreach (var item in _repositories)
+            {
+                MyRepositories.Add(new RepositoryStackPanelViewModel(item));
+            }
         }
 
         public User User
@@ -39,6 +47,15 @@ namespace It_hosting_2._0.ViewModel
             {
                 _user = value;
                 OnPropertyChanged(nameof(User));
+            }
+        }
+         public ObservableCollection<RepositoryStackPanelViewModel> MyRepositories
+        {
+            get => _myRepositories;
+            set
+            {
+                _myRepositories = value;
+                OnPropertyChanged(nameof(MyRepositories));
             }
         }
 
@@ -65,6 +82,22 @@ namespace It_hosting_2._0.ViewModel
                 }
 
                 return _openingCreatingRepositoryCommand;
+            }
+        }
+
+        public CommandTemplate AddRepositoryToListBox
+        {
+            get
+            {
+                if (_addRepositoryToListBox == null)
+                {
+                    _addRepositoryToListBox = new CommandTemplate(obj =>
+                    {
+                        
+                    });
+                }
+
+                return _addRepositoryToListBox;
             }
         }
 

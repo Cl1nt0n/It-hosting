@@ -6,14 +6,12 @@
         xmlns:local="clr-namespace:It_hosting_2._0.View"
         mc:Ignorable="d"
         Title="SignInView" Height="450" Width="800">
-    <Grid>
-        <StackPanel Background="DimGray">
-            <TextBox Text="{Binding Login}" Height="20"/>
-            <TextBlock Grid.Column="3" Grid.Row="10" Text="Login" TextAlignment="Center" Background="White" Margin="150 175 500 0" Height="19"/>
-            <TextBlock Grid.Column="3" Grid.Row="11" Text="Password" TextAlignment="Center" Background="White" Margin="150 0 500 0" Height="20"/>
-            <Button Command="{Binding SigningUpCommand}" Height="39" Content="Create account"/>
-            <Button Grid.Column="3" Grid.Row="12" Grid.ColumnSpan="2" Command="{Binding SigningInCommand}" Grid.RowSpan="2" Margin="150 0 450 0" Content="Enter"/>
-            <TextBox x:Name="PasswordTextBox" Text="{Binding Password}"/>
-        </StackPanel>
-    </Grid>
+    <StackPanel Background="DimGray">
+        <Label Background="DimGray" Margin="380 130 300 0">Login</Label>
+        <TextBox Text="{Binding Login}" Margin="250 0 250 0" Background="LightGray"/>
+        <Label Background="DimGray" Margin="370 0 300 0">Password</Label>
+        <TextBox x:Name="PasswordTextBox" Text="{Binding Password}" Margin="250 0 250 0" Background="LightGray"/>
+        <Button Grid.ColumnSpan="2" Command="{Binding SigningInCommand}" Content="Enter" Margin="250 10 250 -35"/>
+        <Button Command="{Binding SigningUpCommand}" Content="Create account" Margin="250 35 250 -60"/>
+    </StackPanel>
 </Window>

@@ -6,54 +6,12 @@
         xmlns:local="clr-namespace:It_hosting_2._0.View"
         mc:Ignorable="d"
         Title="UserProfileView" Height="900" Width="1600">
-    <Grid Margin="10">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Button Grid.Row="1" FontSize="50" Grid.ColumnSpan="5" Grid.Column="1" Command="{Binding OpeningRepositoriesCommand}">Repositories</Button>
-            </Grid>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Label Grid.Row="1" FontSize="50" Grid.ColumnSpan="5" Grid.Column="1" Content="{Binding UserName}"></Label>
-                <Label Grid.Row="2" FontSize="30" Grid.ColumnSpan="5" Grid.Column="1" Content="{Binding Login}"></Label>
-            </Grid>
-        </Grid>
-        
+    <Grid Margin="10" Background="DimGray">
+        <Button Grid.Row="1" FontSize="50" Grid.ColumnSpan="5" Grid.Column="1" Command="{Binding OpeningRepositoriesCommand}" Margin="600 100 50 650">Repositories</Button>
+
+        <Label Grid.Row="1" FontSize="50" Grid.ColumnSpan="5" Grid.Column="1" Content="{Binding UserName}" Margin="100 100 1000 650"></Label>
+        <Label Grid.Row="2" FontSize="30" Grid.ColumnSpan="5" Grid.Column="1" Content="{Binding Login}" Margin="100 200 1000 570"></Label>
+        <Image Grid.Row="1" Grid.RowSpan="2" Source="{Binding ImageSource}"></Image>
+
     </Grid>
 </Window>

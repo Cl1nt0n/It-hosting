@@ -20,7 +20,7 @@ namespace It_hosting_2._0.ViewModel
         private string _userName;
         private string _login;
         private string _password;
-        private string _confrimPassword;
+        private string _confirmPassword;
 
         public string UserName
         {
@@ -52,13 +52,13 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
-        public string ConfrimPassword
+        public string ConfirmPassword
         {
-            get => _confrimPassword;
+            get => _confirmPassword;
             set
             {
-                _password = value;
-                OnPropertyChanged(nameof(ConfrimPassword));
+                _confirmPassword = value;
+                OnPropertyChanged(nameof(ConfirmPassword));
             }
         }
 
@@ -86,10 +86,10 @@ namespace It_hosting_2._0.ViewModel
         {
             using (ithostingContext db = new ithostingContext())
             {
-                if (string.IsNullOrWhiteSpace(_login) && string.IsNullOrWhiteSpace(_userName)
-                    && string.IsNullOrWhiteSpace(_password))
+                if (string.IsNullOrWhiteSpace(_login) == false && string.IsNullOrWhiteSpace(_userName) == false
+                    && string.IsNullOrWhiteSpace(_password) == false)
                 {
-                    if (_password == _confrimPassword)
+                    if (_password == _confirmPassword)
                     {
                         User user = new User { Login = _login, Password = _password, Nickname = _userName };
                         db.Users.Add(user);

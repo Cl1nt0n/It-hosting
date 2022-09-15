@@ -81,7 +81,7 @@ namespace It_hosting_2._0.ViewModel
                 {
                     _signingInCommand = new CommandTemplate(obj =>
                     {
-                        User = CanSignIn(User);
+                        User = SignIn(User);
                         OpenUserProfileView(User);
                     });
                 }
@@ -112,7 +112,7 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
-        public User CanSignIn(User user)
+        public User SignIn(User user)
         {
             using (ithostingContext db = new ithostingContext())
             {

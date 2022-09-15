@@ -19,6 +19,7 @@ namespace It_hosting_2._0.ViewModel
 
         private string _userName;
         private string _login;
+        private string _imageSource;
         private User _user;
 
         public UserProfileViewModel(Window window, User user)
@@ -29,6 +30,7 @@ namespace It_hosting_2._0.ViewModel
             _window = window;
             UserName = user.Nickname;
             Login = user.Login;
+            ImageSource = "avatarka-pustaya-vk_0.jpg";
         }
 
         public CommandTemplate OpeningRepositoriesCommand
@@ -55,7 +57,17 @@ namespace It_hosting_2._0.ViewModel
                 _user = value;
                 OnPropertyChanged(nameof(User));
             }
-        }    
+        }
+
+        public string ImageSource
+        {
+            get => _imageSource;
+            set
+            {
+                _imageSource = value;
+                OnPropertyChanged(nameof(ImageSource));
+            }
+        }
 
         public string UserName
         {

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:It_hosting_2._0.View"
         mc:Ignorable="d"
         Title="CreatingRepositoryView" Height="450" Width="800">
-    <Grid>
+    <Grid Background="DimGray">
         <StackPanel>
             <Label FontSize="20">Title</Label>
             <TextBox FontSize="20" Text="{Binding Path=Title}"></TextBox>
