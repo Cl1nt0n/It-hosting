@@ -89,6 +89,8 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private void OpenRepositories()
         {
             RepositoriesView repositoriesView = new RepositoriesView(); 
@@ -103,8 +105,6 @@ namespace It_hosting_2._0.ViewModel
         }
 
         public void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) { }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

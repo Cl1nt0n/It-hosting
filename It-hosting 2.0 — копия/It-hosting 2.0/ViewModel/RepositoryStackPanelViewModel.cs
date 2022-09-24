@@ -19,11 +19,13 @@ namespace It_hosting_2._0.ViewModel
         //private User _user;
         private Repository _repository;
         private CommandTemplate _openingRepositoryCommand;
+        private Window _window;
 
-        public RepositoryStackPanelViewModel(Repository repository)
+        public RepositoryStackPanelViewModel(Repository repository, Window window)
 #pragma warning restore CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
         {
             Repository = repository;
+            _window = window;
         }
 
         public Repository Repository
@@ -52,10 +54,12 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private void OpenRepositoryWindow()
         {
             RepositoryView repositoryView = new RepositoryView();
-            RepositoryViewModel repositoryViewModel = new RepositoryViewModel();
+            RepositoryViewModel repositoryViewModel = new RepositoryViewModel(Repository, _window);
 
             repositoryView.DataContext = repositoryViewModel;
             repositoryView.ShowDialog();
@@ -70,7 +74,6 @@ namespace It_hosting_2._0.ViewModel
         //}
         //}
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

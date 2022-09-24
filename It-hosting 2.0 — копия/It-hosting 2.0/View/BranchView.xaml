@@ -1,0 +1,16 @@
+﻿<Window x:Class="It_hosting_2._0.View.BranchView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:It_hosting_2._0.View"
+        mc:Ignorable="d"
+        Title="BranchView" Height="450" Width="800">
+    <Grid>
+        <StackPanel Background="DimGray">
+            <TextBlock Margin="15 20 15 0" Height="30" FontSize="25" TextAlignment="Center" Text="{Binding Branch.Title}"></TextBlock>
+            <Button Margin="40 10 40 0">UploadFile</Button>
+            
+        </StackPanel>
+    </Grid>
+</Window>

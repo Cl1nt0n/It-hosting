@@ -18,14 +18,12 @@ namespace It_hosting_2._0.ViewModel
         private string _title;
         private string _description;
         private bool _isPrivate;
-        private Window _window;
         private User _user;
 
 #pragma warning disable CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
-        public CreatingRepositoryViewModel(Window window, User user)
+        public CreatingRepositoryViewModel(User user)
 #pragma warning restore CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
         {
-            _window = window;
             User = user;
         }
 
@@ -86,12 +84,13 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private void CreateRepository()
         {
             using (ithostingContext db = new ithostingContext())
             {
-                Repository repository = new Repository();
-                repository = new Repository { UserId = _user.Id, Title = _title, Description = _description, IsPrivate = _isPrivate};
+                Repository repository = new Repository { UserId = _user.Id, Title = _title, Description = _description, IsPrivate = _isPrivate};
                 db.Repositories.Add(repository);
                 db.SaveChanges();
                 Branch branch = new Branch { Title = "Main", RepositoryId = repository.Id };
@@ -101,8 +100,6 @@ namespace It_hosting_2._0.ViewModel
                 MessageBox.Show("Репозиторий создан.");
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

@@ -262,3 +262,5 @@ D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-wi
 D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\ref\It-hosting 2.0.dll
 D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\RepositoryView.g.cs
 D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\RepositoryView.baml
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\BranchView.g.cs
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\BranchView.baml

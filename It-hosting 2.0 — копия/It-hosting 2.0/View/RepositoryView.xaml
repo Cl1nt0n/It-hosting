@@ -7,6 +7,19 @@
         mc:Ignorable="d"
         Title="RepositoryView" Height="450" Width="800">
     <Grid>
-        
+        <StackPanel Background="DimGray">
+            <TextBlock Margin="0 20 0 0" Text="{Binding Repository.Title}" TextAlignment="Center" FontSize="30"></TextBlock>
+            <Button Margin="100 30 100 0" Height="40" Command="{Binding CreatingBranch}">AddBranch</Button>
+            <TextBox Margin="0 5 0 0" Text="{Binding Path=BranchTitle}" TextAlignment="Left" FontSize="20" Height="25"></TextBox>
+            <ListBox Margin="0 20 0 0" ItemsSource="{Binding BranchesViews}" HorizontalContentAlignment="Stretch" Background="DimGray">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="0 0 0 0">
+                            <Button Content="{Binding Branch.Title}" Command="{Binding OpeningBranchView}"></Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
     </Grid>
 </Window>

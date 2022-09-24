@@ -21,22 +21,23 @@ namespace It_hosting_2._0.ViewModel
         private Window _window;
         private User _user;
         private ICollection<Repository> _repositories;
-        private ObservableCollection<RepositoryStackPanelViewModel> _myRepositories;
+        private ObservableCollection<RepositoryStackPanelViewModel> _repositoriesView;
 
-#pragma warning disable CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
         public RepositoriesViewModel(Window window, User user)
-#pragma warning restore CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
         {
             _window = window;
             _user = user;
+
             using (ithostingContext db = new ithostingContext())
             {
                 _repositories = db.Repositories.Where(x => x.UserId == User.Id).ToList();
             }
-            MyRepositories = new ObservableCollection<RepositoryStackPanelViewModel>();
+
+            RepositoriesView = new ObservableCollection<RepositoryStackPanelViewModel>();
+
             foreach (var item in _repositories)
             {
-                MyRepositories.Add(new RepositoryStackPanelViewModel(item));
+                RepositoriesView.Add(new RepositoryStackPanelViewModel(item, window));
             }
         }
 
@@ -49,13 +50,14 @@ namespace It_hosting_2._0.ViewModel
                 OnPropertyChanged(nameof(User));
             }
         }
-         public ObservableCollection<RepositoryStackPanelViewModel> MyRepositories
+
+        public ObservableCollection<RepositoryStackPanelViewModel> RepositoriesView
         {
-            get => _myRepositories;
+            get => _repositoriesView;
             set
             {
-                _myRepositories = value;
-                OnPropertyChanged(nameof(MyRepositories));
+                _repositoriesView = value;
+                OnPropertyChanged(nameof(RepositoriesView));
             }
         }
 
@@ -93,7 +95,7 @@ namespace It_hosting_2._0.ViewModel
                 {
                     _addRepositoryToListBox = new CommandTemplate(obj =>
                     {
-                        
+
                     });
                 }
 
@@ -104,14 +106,12 @@ namespace It_hosting_2._0.ViewModel
         private void OpenCreatingRepositoryWindow()
         {
             CreatingRepositoryView creatingRepositoryView = new CreatingRepositoryView();
-            CreatingRepositoryViewModel creatingRepositoryViewModel = new CreatingRepositoryViewModel(creatingRepositoryView, User);
+            CreatingRepositoryViewModel creatingRepositoryViewModel = new CreatingRepositoryViewModel(User);
 
             _window.Hide();
 
             creatingRepositoryView.DataContext = creatingRepositoryViewModel;
             creatingRepositoryView.ShowDialog();
-
-            _window.Show();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
