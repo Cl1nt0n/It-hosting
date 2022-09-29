@@ -1,4 +1,5 @@
-﻿using System;
+﻿using It_hosting_2._0.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,14 @@ namespace It_hosting_2._0.View
         public SignInView()
         {
             InitializeComponent();
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (this.DataContext != null)
+            { 
+                ((dynamic)this.DataContext).SecurePassword = ((PasswordBox)sender).SecurePassword; 
+            }
         }
     }
 }

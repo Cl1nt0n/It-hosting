@@ -10,8 +10,8 @@
         <Label Background="DimGray" Margin="380 130 300 0">Login</Label>
         <TextBox Text="{Binding Login}" Margin="250 0 250 0" Background="LightGray"/>
         <Label Background="DimGray" Margin="370 0 300 0">Password</Label>
-        <TextBox x:Name="PasswordTextBox" Text="{Binding Password}" Margin="250 0 250 0" Background="LightGray"/>
-        <Button Grid.ColumnSpan="2" Command="{Binding SigningInCommand}" Content="Enter" Margin="250 10 250 -35"/>
+        <PasswordBox x:Name="PasswordBox" Margin="250 0 250 0" Background="LightGray" PasswordChanged="PasswordBox_PasswordChanged"/>
+        <Button Grid.ColumnSpan="2" Command="{Binding SigningInCommand}" CommandParameter="{Binding ElementName=PasswordBox}" Content="Enter" Margin="250 10 250 -35"/>
         <Button Command="{Binding SigningUpCommand}" Content="Create account" Margin="250 35 250 -60"/>
     </StackPanel>
 </Window>

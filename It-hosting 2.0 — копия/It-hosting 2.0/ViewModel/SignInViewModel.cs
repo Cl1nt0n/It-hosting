@@ -6,10 +6,13 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
 using System.Runtime.CompilerServices;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Xml;
 
 namespace It_hosting_2._0.ViewModel
 {
@@ -18,7 +21,7 @@ namespace It_hosting_2._0.ViewModel
         private CommandTemplate _signingInCommand;
         private CommandTemplate _signingUpCommand;
         private string _login;
-        private string _password;
+        private SecureString _securePassword;
         private User _user;
         private Window _window;
 
@@ -37,13 +40,13 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
-        public string Password
+        public SecureString SecurePassword
         {
-            get => _password;
+            get => _securePassword;
             set
             {
-                _password = value;
-                OnPropertyChanged(nameof(Password));
+                _securePassword = value;
+                OnPropertyChanged(nameof(SecurePassword));
             }
         }
 
@@ -119,11 +122,12 @@ namespace It_hosting_2._0.ViewModel
                 user = null;
                 List<User> users = db.Users.ToList();
 
-                if (Login != null && Password != null)
+                if (Login != null && SecurePassword != null)
                 {
                     foreach (User item in users)
                     {
-                        if (item.Login == Login && item.Password == Password)
+                        string theString = new NetworkCredential("", SecurePassword).Password;
+                        if (item.Login == Login && item.Password == theString)
                         {
                             user = item;
                             return user;

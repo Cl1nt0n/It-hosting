@@ -100,8 +100,6 @@ namespace It_hosting_2._0.ViewModel
 
             repositoriesView.DataContext = repositoriesViewModel;
             repositoriesView.ShowDialog();
-
-            _window.Show();
         }
 
         public void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) { }

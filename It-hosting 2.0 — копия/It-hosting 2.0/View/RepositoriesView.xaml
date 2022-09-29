@@ -11,15 +11,15 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="5*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button FontSize="30" Command="{Binding OpeningCreatingRepositoryCommand}">Create Repository</Button>
-            <ListBox Grid.Row="1" ItemsSource="{Binding RepositoriesView}" Grid.Column="1" HorizontalContentAlignment="Stretch" Background="DimGray">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="10">
-                            <Button Command="{Binding OpeningRepositoryViewCommand}" Content="{Binding Path=Repository.Title}" Margin="-20 0 -20 -5"></Button>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+        <Button Background="DimGray" Margin="10" FontSize="30" Command="{Binding OpeningCreatingRepositoryCommand}">Create Repository</Button>
+        <ListBox Grid.Row="1" ItemsSource="{Binding RepositoriesView}" Grid.Column="1" HorizontalContentAlignment="Stretch" Background="DimGray">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="0">
+                        <Button Background="DimGray" Command="{Binding OpeningRepositoryViewCommand}" Content="{Binding Path=Repository.Title}" Margin="0" Height="40" Width="750"></Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
