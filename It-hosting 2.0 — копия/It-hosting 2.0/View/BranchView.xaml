@@ -5,13 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:It_hosting_2._0.View"
         mc:Ignorable="d"
-        Title="BranchView" Height="170" Width="800">
+        Title="BranchView" Height="250" Width="800">
     <Grid>
         <StackPanel Background="DimGray">
             <TextBlock Margin="15 20 15 0" Height="30" FontSize="25" TextAlignment="Center" Text="{Binding Branch.Title}"></TextBlock>
             <Button Margin="40 10 40 0" Command="{Binding UploadingFile}">UploadFile</Button>
-            <Button Margin="15 20 15 0" Height="25" Background="DimGray" Content="{Binding FileTitle}" Command="{Binding OpeningFile}"></Button>
-            <Button Margin="15 5 705 0" Height="15" FontSize="10" Background="DimGray">Commits</Button>
+            <ListBox Margin="0 20 0 0" ItemsSource="{Binding FilesViewModels}" HorizontalContentAlignment="Stretch" Background="DimGray">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="0 0 0 0">
+                            <Button Margin="0" Height="40" Background="DimGray" Content="{Binding FileTitle}" Command="{Binding OpeningFile}"></Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
     </Grid>
 </Window>

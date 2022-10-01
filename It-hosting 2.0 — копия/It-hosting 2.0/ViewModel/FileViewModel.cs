@@ -8,37 +8,88 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Collections.Immutable;
+using It_hosting_2._0.Model.Tools;
+using It_hosting_2._0.View;
 
 namespace It_hosting_2._0.ViewModel
 {
     internal class FileViewModel
     {
         private List<StringViewModel> _fileStringsViewModels;
+        private CommandTemplate _commitsOpening;
+        private string _fileTitle;
+        private int _fileId;
 
-        public FileViewModel(string filepath)
+        public FileViewModel(string fileTitle, string text, int fileId)
         {
+            _fileTitle = fileTitle;
             _fileStringsViewModels = new List<StringViewModel>();
-            StreamReader sr = new StreamReader(filepath);
+            _fileId = fileId;
+
             List<string> strings = new List<string>();
-            strings = sr.ReadLine().Split("\n").ToList();
+            strings = text.Split("\n").ToList();
 
-
-            foreach (var item in strings)
+            for (int i = 0; i < strings.Count; i++)
             {
-                _fileStringsViewModels.Add(new StringViewModel("1." + item)); 
+                _fileStringsViewModels.Add(new StringViewModel($"{i + 1}.  " + strings[i]));
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public CommandTemplate CommitsOpening
+        {
+            get
+            {
+                if(_commitsOpening == null)
+                {
+                    _commitsOpening = new CommandTemplate(obj =>
+                    {
+                        OpenCommitsView();
+                    });
+                }
+
+                return _commitsOpening;
+            }
+        }
+
         public List<StringViewModel> FileStringsViewModel
-        { 
-            get => _fileStringsViewModels; 
+        {
+            get => _fileStringsViewModels;
             set
             {
                 _fileStringsViewModels = value;
                 OnPropertyChanged(nameof(FileStringsViewModel));
             }
+        }
+
+        public string FileTitle
+        {
+            get => _fileTitle;
+            set
+            {
+                _fileTitle = value;
+                OnPropertyChanged(nameof(FileTitle));
+            }
+        }
+
+        public int FileId
+        {
+            get => _fileId;
+            set
+            {
+                _fileId = value;
+                OnPropertyChanged(nameof(FileId));
+            }
+        }
+
+        private void OpenCommitsView()
+        {
+            CommitsView commitsView = new CommitsView();
+            CommitsViewModel commitsViewModel = new CommitsViewModel(FileId);
+
+            commitsView.DataContext = commitsViewModel;
+            commitsView.ShowDialog();
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>

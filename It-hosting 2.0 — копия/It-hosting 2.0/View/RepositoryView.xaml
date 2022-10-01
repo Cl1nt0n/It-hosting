@@ -9,13 +9,13 @@
     <Grid>
         <StackPanel Background="DimGray">
             <TextBlock Margin="0 20 0 0" Text="{Binding Repository.Title}" TextAlignment="Center" FontSize="30"></TextBlock>
-            <Button Margin="100 30 100 0" Height="40" Command="{Binding CreatingBranch}">AddBranch</Button>
-            <TextBox Margin="0 5 0 0" Text="{Binding Path=BranchTitle}" TextAlignment="Left" FontSize="20" Height="25"></TextBox>
+            <Button Margin="100 30 100 0" Height="40" Command="{Binding CreatingBranch}" Background="DimGray">AddBranch</Button>
+            <TextBox Background="DimGray" Margin="0 5 0 0" Text="{Binding Path=BranchTitle}" TextAlignment="Left" FontSize="20" Height="25"></TextBox>
             <ListBox Margin="0 20 0 0" ItemsSource="{Binding BranchesViews}" HorizontalContentAlignment="Stretch" Background="DimGray">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="0 0 0 0">
-                            <Button Content="{Binding Branch.Title}" Command="{Binding OpeningBranchView}"></Button>
+                        <StackPanel>
+                            <Button Background="DimGray" Content="{Binding Branch.Title}" Command="{Binding OpeningBranchView}" Margin="0" Height="40"></Button>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

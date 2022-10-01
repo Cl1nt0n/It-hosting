@@ -93,7 +93,7 @@ namespace It_hosting_2._0.ViewModel
                 Repository repository = new Repository { UserId = _user.Id, Title = _title, Description = _description, IsPrivate = _isPrivate};
                 db.Repositories.Add(repository);
                 db.SaveChanges();
-                Branch branch = new Branch { Title = "Main", RepositoryId = repository.Id };
+                Branch branch = new Branch { Title = "Main", RepositoryId = repository.Id, IsMain = true };
                 db.Branches.Add(branch);
                 db.SaveChanges();
 

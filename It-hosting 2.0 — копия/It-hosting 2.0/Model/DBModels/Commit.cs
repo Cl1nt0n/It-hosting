@@ -6,9 +6,9 @@ namespace It_hosting_2._0.Models.DBModels
     public partial class Commit
     {
         public int Id { get; set; }
-        public string File { get; set; } = null!;
-        public int BranchId { get; set; }
+        public string Text { get; set; } = null!;
+        public int FileId { get; set; }
 
-        public virtual Branch Branch { get; set; } = null!;
+        public virtual Branch File { get; set; } = null!;
     }
 }

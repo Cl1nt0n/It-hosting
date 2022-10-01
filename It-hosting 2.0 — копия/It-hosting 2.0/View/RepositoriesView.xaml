@@ -16,7 +16,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="0">
-                        <Button Background="DimGray" Command="{Binding OpeningRepositoryViewCommand}" Content="{Binding Path=Repository.Title}" Margin="0" Height="40" Width="750"></Button>
+                        <Button Background="DimGray" Command="{Binding OpeningRepositoryViewCommand}" Content="{Binding Path=Repository.Title}" Margin="0" Height="40"></Button>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

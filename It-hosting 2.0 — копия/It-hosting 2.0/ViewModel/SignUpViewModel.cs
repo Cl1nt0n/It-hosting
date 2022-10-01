@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Runtime.CompilerServices;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,8 +21,8 @@ namespace It_hosting_2._0.ViewModel
 
         private string _userName;
         private string _login;
-        private string _password;
-        private string _confirmPassword;
+        private SecureString _password;
+        private SecureString _confirmPassword;
 
         public string UserName
         {
@@ -42,7 +44,7 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
-        public string Password
+        public SecureString Password
         {
             get => _password;
             set
@@ -52,7 +54,7 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
-        public string ConfirmPassword
+        public SecureString ConfirmPassword
         {
             get => _confirmPassword;
             set
@@ -86,12 +88,14 @@ namespace It_hosting_2._0.ViewModel
         {
             using (ithostingContext db = new ithostingContext())
             {
+                string password = new NetworkCredential("", Password).Password;
+                string confirmPassword = new NetworkCredential("", ConfirmPassword).Password;
                 if (string.IsNullOrWhiteSpace(_login) == false && string.IsNullOrWhiteSpace(_userName) == false
-                    && string.IsNullOrWhiteSpace(_password) == false)
+                    && string.IsNullOrWhiteSpace(password) == false)
                 {
-                    if (_password == _confirmPassword)
+                    if (password == confirmPassword)
                     {
-                        User user = new User { Login = _login, Password = _password, Nickname = _userName };
+                        User user = new User { Login = _login, Password = password, Nickname = _userName };
                         db.Users.Add(user);
                         db.SaveChanges();
 

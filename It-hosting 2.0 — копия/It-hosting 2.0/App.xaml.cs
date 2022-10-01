@@ -20,7 +20,7 @@ namespace It_hosting_2._0
             SignInView window = new SignInView();
             SignInViewModel viewModel = new SignInViewModel(window);
 
-            window.Closing += viewModel.OnClosing;
+            //window.Closing += viewModel.OnClosing;
 
             window.DataContext = viewModel;
             window.Show();

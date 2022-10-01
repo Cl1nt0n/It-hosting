@@ -8,7 +8,15 @@
         Title="CommitsView" Height="450" Width="800">
     <Grid Background="DimGray">
         <StackPanel>
-            
+            <ListBox Grid.Row="1" ItemsSource="{Binding RepositoriesView}" Grid.Column="1" HorizontalContentAlignment="Stretch" Background="DimGray">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="0">
+                            <Button Background="DimGray" Command="{Binding OpeningRepositoryViewCommand}" Content="{Binding Path=Repository.Title}" Margin="0" Height="40"></Button>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
     </Grid>
 </Window>

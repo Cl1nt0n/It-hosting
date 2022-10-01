@@ -94,7 +94,18 @@ namespace It_hosting_2._0.ViewModel
             {
                 using (ithostingContext db = new ithostingContext())
                 {
-                    db.Branches.Add(new Branch { Title = BranchTitle, RepositoryId = Repository.Id });
+                    List<File> mainFiles = new List<File>();
+                    mainFiles = db.Files.Where(x => x.BranchId == db.Branches.Where(x => x.IsMain == true && x.RepositoryId == Repository.Id).First().Id).ToList();
+                    Branch branch = new Branch { Title = BranchTitle, RepositoryId = Repository.Id, IsMain = false };
+                    db.Branches.Add(branch);
+                    db.SaveChanges();
+
+                    foreach (File file in mainFiles)
+                    {
+                        File currentFile = new File { Text = file.Text, Title = file.Title, BranchId = branch.Id } ;
+                        db.Files.Add(currentFile);
+                    }
+
                     db.SaveChanges();
                 }
 

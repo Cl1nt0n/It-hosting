@@ -17,7 +17,6 @@ namespace It_hosting_2._0.ViewModel
     internal class RepositoriesViewModel
     {
         private CommandTemplate _openingCreatingRepositoryCommand;
-        private CommandTemplate _addRepositoryToListBox;
         private Window _window;
         private User _user;
         private ICollection<Repository> _repositories;
@@ -86,23 +85,7 @@ namespace It_hosting_2._0.ViewModel
                 return _openingCreatingRepositoryCommand;
             }
         }
-
-        public CommandTemplate AddRepositoryToListBox
-        {
-            get
-            {
-                if (_addRepositoryToListBox == null)
-                {
-                    _addRepositoryToListBox = new CommandTemplate(obj =>
-                    {
-
-                    });
-                }
-
-                return _addRepositoryToListBox;
-            }
-        }
-
+        
         private void OpenCreatingRepositoryWindow()
         {
             CreatingRepositoryView creatingRepositoryView = new CreatingRepositoryView();

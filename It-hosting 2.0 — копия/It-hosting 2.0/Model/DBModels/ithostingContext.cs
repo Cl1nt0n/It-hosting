@@ -19,6 +19,7 @@ namespace It_hosting_2._0.Models.DBModels
         public virtual DbSet<Branch> Branches { get; set; } = null!;
         public virtual DbSet<Collaborator> Collaborators { get; set; } = null!;
         public virtual DbSet<Commit> Commits { get; set; } = null!;
+        public virtual DbSet<File> Files { get; set; } = null!;
         public virtual DbSet<PullRequest> PullRequests { get; set; } = null!;
         public virtual DbSet<Repository> Repositories { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
@@ -45,9 +46,7 @@ namespace It_hosting_2._0.Models.DBModels
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.File)
-                    .HasMaxLength(255)
-                    .HasColumnName("file");
+                entity.Property(e => e.IsMain).HasColumnName("isMain");
 
                 entity.Property(e => e.RepositoryId).HasColumnName("repository_id");
 
@@ -93,21 +92,46 @@ namespace It_hosting_2._0.Models.DBModels
             {
                 entity.ToTable("commits");
 
-                entity.HasIndex(e => e.BranchId, "FK_commits_branch_id");
+                entity.HasIndex(e => e.FileId, "FK_commits_branch_id");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.FileId).HasColumnName("file_id");
+
+                entity.Property(e => e.Text)
+                    .HasColumnType("text")
+                    .HasColumnName("text");
+
+                entity.HasOne(d => d.File)
+                    .WithMany(p => p.Commits)
+                    .HasForeignKey(d => d.FileId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_commits_branch_id");
+            });
+
+            modelBuilder.Entity<File>(entity =>
+            {
+                entity.ToTable("files");
+
+                entity.HasIndex(e => e.BranchId, "FK_files_branch_id");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.BranchId).HasColumnName("branch_id");
 
-                entity.Property(e => e.File)
+                entity.Property(e => e.Text)
+                    .HasColumnType("text")
+                    .HasColumnName("text");
+
+                entity.Property(e => e.Title)
                     .HasMaxLength(255)
-                    .HasColumnName("file");
+                    .HasColumnName("title");
 
                 entity.HasOne(d => d.Branch)
-                    .WithMany(p => p.Commits)
+                    .WithMany(p => p.Files)
                     .HasForeignKey(d => d.BranchId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_commits_branch_id");
+                    .HasConstraintName("FK_files_branch_id");
             });
 
             modelBuilder.Entity<PullRequest>(entity =>
@@ -177,7 +201,7 @@ namespace It_hosting_2._0.Models.DBModels
                 entity.Property(e => e.Image)
                     .HasMaxLength(255)
                     .HasColumnName("image")
-                    .HasDefaultValueSql("'D:\\\\clessons\\\\It-hosting 2.0\\\\It-hosting 2.0\\\\bin\\\\Debug\\\\net6.0-windows\\\\avatarka-pustaya-vk_0.jpg'");
+                    .HasDefaultValueSql("'avatarka-pustaya-vk_0.jpg'");
 
                 entity.Property(e => e.Login)
                     .HasMaxLength(255)

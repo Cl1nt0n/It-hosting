@@ -12,9 +12,9 @@
         <Label Margin="370 0 350 0">Nickname</Label>
         <TextBox Text="{Binding Path=UserName}" Margin="250 0 250 0" Background="LightGray"/>
         <Label Margin="370 0 350 0">Password</Label>
-        <TextBox Margin="250 0 250 0" Text="{Binding Path=Password}" Background="LightGray"/>
+        <PasswordBox x:Name="PasswordBox" Margin="250 0 250 0" PasswordChanged="PasswordBox_PasswordChanged" Background="LightGray"/>
         <Label Margin="355 0 330 0">Repeat password</Label>
-        <TextBox Text="{Binding Path=ConfirmPassword}" Margin="250 0 250 0" Background="LightGray"/>
+        <PasswordBox x:Name="RepeatPasswordBox" PasswordChanged="RepeatPasswordBox_PasswordChanged" Margin="250 0 250 0" Background="LightGray"/>
         <Button Command="{Binding AddUserCommand}" Margin="250 5 250 -30">Create account</Button>
     </StackPanel>
     
