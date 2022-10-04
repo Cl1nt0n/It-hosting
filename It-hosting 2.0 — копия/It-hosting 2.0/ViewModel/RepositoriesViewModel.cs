@@ -95,6 +95,8 @@ namespace It_hosting_2._0.ViewModel
 
             creatingRepositoryView.DataContext = creatingRepositoryViewModel;
             creatingRepositoryView.ShowDialog();
+
+            _window.Show();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

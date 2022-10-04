@@ -61,19 +61,13 @@ namespace It_hosting_2._0.ViewModel
             RepositoryView repositoryView = new RepositoryView();
             RepositoryViewModel repositoryViewModel = new RepositoryViewModel(Repository, _window);
 
+            _window.Hide();
+
             repositoryView.DataContext = repositoryViewModel;
             repositoryView.ShowDialog();
-        }
-        //public ICollection<Repository> Repositories
-        //{
-        //get => _repositories;
-        //set
-        //{
-        //_repositories = value;
-        //OnPropertyChanged(nameof(Repositories));
-        //}
-        //}
 
+            _window.Show();
+        }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\App.xaml
-9-129820474
+10-1740495842
 
-32-1883986206
+34-590063970
 2141334755679
-View\BranchView.xaml;View\CommitsView.xaml;View\CreatingRepositoryView.xaml;View\FileView.xaml;View\RepositoriesView.xaml;View\RepositoryView.xaml;View\SignInView.xaml;View\SignUpView.xaml;View\UserProfileView.xaml;
+View\BranchView.xaml;View\CommitFileView.xaml;View\CommitsView.xaml;View\CreatingRepositoryView.xaml;View\FileView.xaml;View\RepositoriesView.xaml;View\RepositoryView.xaml;View\SignInView.xaml;View\SignUpView.xaml;View\UserProfileView.xaml;
 
-False
+True
 

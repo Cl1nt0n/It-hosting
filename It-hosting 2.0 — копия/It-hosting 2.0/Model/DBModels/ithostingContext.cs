@@ -92,9 +92,14 @@ namespace It_hosting_2._0.Models.DBModels
             {
                 entity.ToTable("commits");
 
-                entity.HasIndex(e => e.FileId, "FK_commits_branch_id");
+                entity.HasIndex(e => e.FileId, "FK_commits_file_id");
 
                 entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.CreatingDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("creating_date")
+                    .HasDefaultValueSql("'0000-00-00 00:00:00'");
 
                 entity.Property(e => e.FileId).HasColumnName("file_id");
 
@@ -106,7 +111,7 @@ namespace It_hosting_2._0.Models.DBModels
                     .WithMany(p => p.Commits)
                     .HasForeignKey(d => d.FileId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_commits_branch_id");
+                    .HasConstraintName("FK_commits_file_id");
             });
 
             modelBuilder.Entity<File>(entity =>

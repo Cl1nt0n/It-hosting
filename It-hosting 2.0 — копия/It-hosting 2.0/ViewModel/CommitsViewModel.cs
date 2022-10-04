@@ -1,4 +1,7 @@
-﻿using It_hosting_2._0.Models.DBModels;
+﻿using It_hosting_2._0.Model.Tools;
+using It_hosting_2._0.Models.DBModels;
+using It_hosting_2._0.View;
+using Microsoft.EntityFrameworkCore.Update.Internal;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,24 +15,26 @@ namespace It_hosting_2._0.ViewModel
 {
     internal class CommitsViewModel
     {
-        private ObservableCollection<CommitViewModel> _commitsViewModels;
+        private List<CommitViewModel> _commitsViewModels;
 
         public CommitsViewModel(int fileId)
         {
-            CommitsViewModels = new ObservableCollection<CommitViewModel>();
+            CommitsViewModels = new List<CommitViewModel>();
             using (ithostingContext db = new ithostingContext())
             {
-                List<Commit> commits = db.Commits.Where(x => x.Id == fileId).ToList();
+                List<Commit> commits = db.Commits.Where(x => x.FileId == fileId).ToList();
+                commits = commits.OrderBy(x => x.CreatingDate).ToList();
+
                 foreach (Commit commit in commits)
                 {
-                    CommitsViewModels.Add(new CommitViewModel(commit.Text));
+                    CommitsViewModels.Add(new CommitViewModel(commit.Text, (DateTime)commit.CreatingDate));
                 }
             }
         }
 
-        public ObservableCollection<CommitViewModel> CommitsViewModels 
-        { 
-            get => _commitsViewModels; 
+        public List<CommitViewModel> CommitsViewModels
+        {
+            get => _commitsViewModels;
             set
             {
                 _commitsViewModels = value;
@@ -46,20 +51,13 @@ namespace It_hosting_2._0.ViewModel
     internal class CommitViewModel
     {
         private string _text;
+        private DateTime _date;
+        private CommandTemplate _openingCommitFileCommand;
 
-        public CommitViewModel(string text)
+        public CommitViewModel(string text, DateTime date)
         {
             Text = text;
-        }
-
-        public string Title
-        {
-            get => _title;
-            set
-            {
-                _title = value;
-                OnPropertyChanged(nameof(Title));
-            }
+            _date = date;
         }
 
         public string Text
@@ -72,7 +70,42 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
+        public DateTime Date
+        {
+            get => _date;
+            set
+            {
+                _date = value;
+                OnPropertyChanged(nameof(Date));
+            }
+        }
+
+        public CommandTemplate OpeningCommitFileCommand
+        {
+            get
+            {
+                if (_openingCommitFileCommand == null)
+                {
+                    _openingCommitFileCommand = new CommandTemplate(obj =>
+                    {
+                        OpenCommitFileView();
+                    });
+                }
+
+                return _openingCommitFileCommand;
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OpenCommitFileView()
+        {
+            CommitFileView commitFileView = new CommitFileView();
+            CommitFileViewModel commitFileViewModel = new CommitFileViewModel(Text);
+
+            commitFileView.DataContext = commitFileViewModel;
+            commitFileView.ShowDialog();
+        }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

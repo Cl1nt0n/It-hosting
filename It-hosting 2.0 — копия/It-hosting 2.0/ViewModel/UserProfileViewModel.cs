@@ -96,7 +96,6 @@ namespace It_hosting_2._0.ViewModel
             RepositoriesView repositoriesView = new RepositoriesView(); 
             RepositoriesViewModel repositoriesViewModel = new RepositoriesViewModel(repositoriesView, User);
 
-
             repositoriesView.DataContext = repositoriesViewModel;
             repositoriesView.ShowDialog();
 

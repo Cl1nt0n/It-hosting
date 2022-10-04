@@ -10,6 +10,9 @@
     <Compile Update="View\BranchView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\CommitFileView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\CommitsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -37,6 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="View\BranchView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\CommitFileView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\CommitsView.xaml">

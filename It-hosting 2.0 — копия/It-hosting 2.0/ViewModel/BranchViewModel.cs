@@ -90,12 +90,13 @@ namespace It_hosting_2._0.ViewModel
                     string path = openFileDialog.FileName;
                     string title = openFileDialog.FileName.Split(@"\").Last();
                     StreamReader sr = new StreamReader(openFileDialog.FileName);
-                    File uploadedFile = db.Files.Where(x => x.BranchId == Branch.Id && x.Title == title).First();
 
-                    if (uploadedFile != null)
+                    List<File> uploadedFiles = db.Files.Where(x => x.BranchId == Branch.Id && x.Title == title).ToList();
+
+                    if (uploadedFiles.Count != 0)
                     {
                         File file = db.Files.Where(x => x.BranchId == Branch.Id && x.Title == title).First();
-                        db.Commits.Add(new Commit { Text = file.Text, FileId = file.Id });
+                        db.Commits.Add(new Commit { Text = file.Text, FileId = file.Id, CreatingDate = DateTime.Now });
                         db.Files.Where(x => x.BranchId == Branch.Id && x.Title == title).First().Text = sr.ReadToEnd();
                         db.SaveChanges();
                         return;
