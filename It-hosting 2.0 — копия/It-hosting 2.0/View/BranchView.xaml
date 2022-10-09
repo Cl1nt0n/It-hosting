@@ -8,8 +8,10 @@
         Title="BranchView" Height="250" Width="800">
     <Grid>
         <StackPanel Background="DimGray">
+            <Button Margin="600 0 0 0" Height="25" Content="CreatePullRequest" Background="DimGray" Command="{Binding PullRequestOpeningCommand}"></Button>
             <TextBlock Margin="15 20 15 0" Height="30" FontSize="25" TextAlignment="Center" Text="{Binding Branch.Title}"></TextBlock>
             <Button Margin="40 10 40 0" Command="{Binding UploadingFile}">UploadFile</Button>
+            
             <ListBox Margin="0 20 0 0" ItemsSource="{Binding FilesViewModels}" HorizontalContentAlignment="Stretch" Background="DimGray">
                 <ListBox.ItemTemplate>
                     <DataTemplate>

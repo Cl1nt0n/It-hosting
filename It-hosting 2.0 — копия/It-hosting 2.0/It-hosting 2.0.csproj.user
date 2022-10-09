@@ -22,6 +22,12 @@
     <Compile Update="View\FileView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\MergeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\PullRequestView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\RepositoriesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -52,6 +58,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\FileView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\MergeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\PullRequestView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\RepositoriesView.xaml">

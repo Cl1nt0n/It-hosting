@@ -12,26 +12,26 @@ namespace It_hosting_2._0.ViewModel
 {
     internal class CommitFileViewModel
     {
-        private List<StringViewModel> _commitFileStringsViewModels;
+        private List<StringCommitFileViewModel> _commitFileStringsViewModels;
         private string _fileTitle;
         private int _fileId;
 
         public CommitFileViewModel(string text)
         {
-            _commitFileStringsViewModels = new List<StringViewModel>();
+            _commitFileStringsViewModels = new List<StringCommitFileViewModel>();
 
             List<string> strings = new List<string>();
             strings = text.Split("\n").ToList();
 
             for (int i = 0; i < strings.Count; i++)
             {
-                _commitFileStringsViewModels.Add(new StringViewModel($"{i + 1}.  " + strings[i]));
+                _commitFileStringsViewModels.Add(new StringCommitFileViewModel($"{i + 1}.  " + strings[i]));
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public List<StringViewModel> CommitFileStringsViewModels
+        public List<StringCommitFileViewModel> CommitFileStringsViewModels
         {
             get => _commitFileStringsViewModels;
             set
@@ -68,10 +68,27 @@ namespace It_hosting_2._0.ViewModel
     internal class StringCommitFileViewModel
     {
         private string _fileString;
+        private string _background;
 
         public StringCommitFileViewModel(string str)
         {
             _fileString = str;
+            if (str.Contains("<span class='+'>") || str.Contains("</span>"))
+            {
+
+                Background = "LimeGreen";
+            }
+            else
+            {
+                if (str.Contains("<span class='-'>") && str.Contains("<span class='+'>") != true)
+                {
+                    Background = "Firebrick";
+                }
+                else
+                {
+                    Background = "DimGray";
+                }
+            }
         }
 
         public string FileString
@@ -81,6 +98,16 @@ namespace It_hosting_2._0.ViewModel
             {
                 _fileString = value;
                 OnPropertyChanged(nameof(FileString));
+            }
+        }
+
+        public string Background
+        {
+            get => _background;
+            set
+            {
+                _background = value;
+                OnPropertyChanged(nameof(Background));
             }
         }
 

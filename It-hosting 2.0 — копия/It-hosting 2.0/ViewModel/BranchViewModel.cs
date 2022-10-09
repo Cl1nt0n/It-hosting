@@ -2,6 +2,7 @@
 using It_hosting_2._0.Models.DBModels;
 using It_hosting_2._0.View;
 using Microsoft.Win32;
+using my.utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,12 +22,15 @@ namespace It_hosting_2._0.ViewModel
     {
         private Branch _branch;
         private CommandTemplate _uploadingFile;
+        private CommandTemplate _pullRequestOpeningCommand;
         private List<FilesViewModel> _filesViewModels;
+        private Window _window;
 
         public BranchViewModel(Window window, Branch branch)
         {
             Branch = branch;
             FilesViewModels = new List<FilesViewModel>();
+            _window = window;
 
             using (ithostingContext db = new ithostingContext())
             {
@@ -76,7 +80,36 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
+        public CommandTemplate PullRequestOpeningCommand 
+        { 
+            get
+            {
+                if (_pullRequestOpeningCommand == null)
+                {
+                    _pullRequestOpeningCommand = new CommandTemplate(obj =>
+                    {
+                        OpenPullRequest();
+                    });
+                }
+
+                return _pullRequestOpeningCommand;
+            }
+        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
+        private void OpenPullRequest()
+        {
+            PullRequestView pullRequestView = new PullRequestView();
+            PullRequestViewModel pullRequestViewModel = new PullRequestViewModel(pullRequestView, Branch.RepositoryId, Branch.Id);
+
+            _window.Hide();
+
+            pullRequestView.DataContext = pullRequestViewModel;
+            pullRequestView.ShowDialog();
+
+            _window.Show();
+        }
 
         public void UploadFile()
         {
@@ -90,22 +123,79 @@ namespace It_hosting_2._0.ViewModel
                     string path = openFileDialog.FileName;
                     string title = openFileDialog.FileName.Split(@"\").Last();
                     StreamReader sr = new StreamReader(openFileDialog.FileName);
-
+                    string currentFile = sr.ReadToEnd();
                     List<File> uploadedFiles = db.Files.Where(x => x.BranchId == Branch.Id && x.Title == title).ToList();
 
                     if (uploadedFiles.Count != 0)
                     {
                         File file = db.Files.Where(x => x.BranchId == Branch.Id && x.Title == title).First();
-                        db.Commits.Add(new Commit { Text = file.Text, FileId = file.Id, CreatingDate = DateTime.Now });
-                        db.Files.Where(x => x.BranchId == Branch.Id && x.Title == title).First().Text = sr.ReadToEnd();
+                        //100-не работает
+                        db.Commits.Add(new Commit { Text = MakeCommit(file.Text, currentFile), FileId = file.Id, CreatingDate = DateTime.Now });
+                        db.Files.Where(x => x.BranchId == Branch.Id && x.Title == title).First().Text = currentFile;
                         db.SaveChanges();
                         return;
                     }
 
-                    db.Files.Add(new File { BranchId = Branch.Id, Text = sr.ReadToEnd(), Title = openFileDialog.FileName.Split(@"\").Last() });
+                    db.Files.Add(new File { BranchId = Branch.Id, Text = currentFile, Title = openFileDialog.FileName.Split(@"\").Last() });
                     db.SaveChanges();
                 }
             }
+        }
+
+        public string MakeCommit(string firstFile, string secondFile)
+        {
+            string a_line = firstFile;
+            string b_line = secondFile;
+            string finalString = "";
+
+            int[] a_codes = Diff.DiffCharCodes(a_line, true);
+            int[] b_codes = Diff.DiffCharCodes(b_line, true);
+            Diff.Item[] diffs = Diff.DiffInt(a_codes, b_codes);
+
+            int pos = 0;
+            for (int n = 0; n < diffs.Length; n++)
+            {
+                Diff.Item it = diffs[n];
+
+                // write unchanged chars
+                while ((pos < it.StartB) && (pos < b_line.Length))
+                {
+                    finalString += b_line[pos].ToString();
+                    pos++;
+                } // while
+
+                // write deleted chars
+                if (it.deletedA > 0)
+                {
+                    finalString += "<span class='-'>";
+                    for (int m = 0; m < it.deletedA; m++)
+                    {
+                        finalString += a_line[it.StartA + m].ToString();
+                    } // for
+                    finalString += "</span>";
+                }
+
+                // write inserted chars
+                if (pos < it.StartB + it.insertedB)
+                {
+                    finalString += "<span class='+'>";
+                    while (pos < it.StartB + it.insertedB)
+                    {
+                        finalString += b_line[pos].ToString();
+                        pos++;
+                    } // while
+                    finalString += "</span>";
+                } // if
+            } // while
+
+            // write rest of unchanged chars
+            while (pos < b_line.Length)
+            {
+                finalString += b_line[pos].ToString();
+                pos++;
+            } // while
+
+            return finalString;
         }
 
         //private bool HasRegisteredFileExstension(string fileExstension)
@@ -173,7 +263,7 @@ namespace It_hosting_2._0.ViewModel
         private void OpenFile()
         {
             FileView fileView = new FileView();
-            FileViewModel fileViewModel = new FileViewModel(File.Title, File.Text, File.Id);
+            FileViewModel fileViewModel = new FileViewModel(File.Title, File.Text, File.Id, fileView);
 
             fileView.DataContext = fileViewModel;
             fileView.ShowDialog();

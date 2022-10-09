@@ -10,6 +10,7 @@ using System.Windows;
 using System.Collections.Immutable;
 using It_hosting_2._0.Model.Tools;
 using It_hosting_2._0.View;
+using Accessibility;
 
 namespace It_hosting_2._0.ViewModel
 {
@@ -19,12 +20,14 @@ namespace It_hosting_2._0.ViewModel
         private CommandTemplate _commitsOpening;
         private string _fileTitle;
         private int _fileId;
+        private Window _window;
 
-        public FileViewModel(string fileTitle, string text, int fileId)
+        public FileViewModel(string fileTitle, string text, int fileId, Window window)
         {
             _fileTitle = fileTitle;
             _fileStringsViewModels = new List<StringViewModel>();
             _fileId = fileId;
+            _window = window;
 
             List<string> strings = new List<string>();
             strings = text.Split("\n").ToList();
@@ -88,8 +91,12 @@ namespace It_hosting_2._0.ViewModel
             CommitsView commitsView = new CommitsView();
             CommitsViewModel commitsViewModel = new CommitsViewModel(FileId);
 
+            _window.Hide();
+            
             commitsView.DataContext = commitsViewModel;
             commitsView.ShowDialog();
+
+            _window.Show();
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>

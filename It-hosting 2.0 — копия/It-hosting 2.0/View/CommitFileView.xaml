@@ -11,7 +11,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="0 0 0 0">
-                        <TextBlock Text="{Binding FileString}" Background="DimGray" FontStyle="Normal" Foreground="Black" FontSize="19"></TextBlock>
+                        <TextBlock Text="{Binding FileString}" Background="{Binding Background}" FontStyle="Normal" Foreground="Black" FontSize="19" Height="30"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
