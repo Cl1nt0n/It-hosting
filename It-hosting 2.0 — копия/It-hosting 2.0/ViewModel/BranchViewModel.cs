@@ -21,7 +21,7 @@ namespace It_hosting_2._0.ViewModel
     internal class BranchViewModel
     {
         private Branch _branch;
-        private CommandTemplate _uploadingFile;
+        private CommandTemplate _uploadingFileCommand;
         private CommandTemplate _pullRequestOpeningCommand;
         private List<FilesViewModel> _filesViewModels;
         private Window _window;
@@ -54,19 +54,19 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
-        public CommandTemplate UploadingFile
+        public CommandTemplate UploadingFileCommand
         {
             get
             {
-                if (_uploadingFile == null)
+                if (_uploadingFileCommand == null)
                 {
-                    _uploadingFile = new CommandTemplate(obj =>
+                    _uploadingFileCommand = new CommandTemplate(obj =>
                     {
                         UploadFile();
                     });
                 }
 
-                return _uploadingFile;
+                return _uploadingFileCommand;
             }
         }
 

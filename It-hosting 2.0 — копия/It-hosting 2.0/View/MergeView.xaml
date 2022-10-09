@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="MergeView" Height="200" Width="800">
     <Grid Background="DimGray">
-        <Label></Label>
+        <Label Margin="300 70 100 0" HorizontalAlignment="Left" Content="{Binding SecondBranch.Title}"></Label>
+        <Label Margin="100 70 300 0" HorizontalAlignment="Right" Content="{Binding FirstBranch.Title}"></Label>
+        <Button Margin="40 120 40 10" Command="{Binding MergeCommand}">Merge</Button>
     </Grid>
 </Window>

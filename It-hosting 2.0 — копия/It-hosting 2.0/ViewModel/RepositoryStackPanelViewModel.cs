@@ -65,8 +65,6 @@ namespace It_hosting_2._0.ViewModel
 
             repositoryView.DataContext = repositoryViewModel;
             repositoryView.ShowDialog();
-
-            _window.Show();
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>

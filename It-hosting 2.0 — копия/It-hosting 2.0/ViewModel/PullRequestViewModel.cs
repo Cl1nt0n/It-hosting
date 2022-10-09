@@ -20,7 +20,7 @@ namespace It_hosting_2._0.ViewModel
 
         public PullRequestViewModel(Window window, int repositoryId, int currentBranchId)
         {
-            
+
             PRBranchesViewModels = new List<PRBranchesViewModel>();
             _window = window;
 
@@ -31,7 +31,7 @@ namespace It_hosting_2._0.ViewModel
 
                 foreach (var item in Branches)
                 {
-                    PRBranchesViewModels.Add(new PRBranchesViewModel(item, _window));
+                    PRBranchesViewModels.Add(new PRBranchesViewModel(item, _window, currentBranchId));
                 }
             }
         }
@@ -54,14 +54,16 @@ namespace It_hosting_2._0.ViewModel
 
     internal class PRBranchesViewModel
     {
-        private CommandTemplate _openingBranchView;
+        private CommandTemplate _openingMergeViewCommand;
         private Branch _branch;
         private Window _window;
+        private int _currentBranchId;
 
-        public PRBranchesViewModel(Branch branch, Window window)
+        public PRBranchesViewModel(Branch branch, Window window, int currentBranchId)
         {
             _branch = branch;
             _window = window;
+            _currentBranchId = currentBranchId;
         }
 
         public Branch Branch
@@ -74,31 +76,45 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
-        public CommandTemplate OpeningBranchView
+        public int CurrentBranchId
+        {
+            get => _currentBranchId;
+            set
+            {
+                _currentBranchId = value;
+                OnPropertyChanged(nameof(CurrentBranchId));
+            }
+        }
+
+        public CommandTemplate OpeningMergeViewCommand
         {
             get
             {
-                if (_openingBranchView == null)
+                if (_openingMergeViewCommand == null)
                 {
-                    _openingBranchView = new CommandTemplate(obj =>
+                    _openingMergeViewCommand = new CommandTemplate(obj =>
                     {
-                        OpenBranchView();
+                        OpenMergeView();
                     });
                 }
 
-                return _openingBranchView;
+                return _openingMergeViewCommand;
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void OpenBranchView()
+        public void OpenMergeView()
         {
-            BranchView branchView = new BranchView();
-            BranchViewModel branchViewModel = new BranchViewModel(_window, Branch);
+            MergeView branchView = new MergeView();
+            MergeViewModel branchViewModel = new MergeViewModel(CurrentBranchId, Branch.Id, _window);
+
+            _window.Hide();
 
             branchView.DataContext = branchViewModel;
             branchView.ShowDialog();
+
+            _window.Show();
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>

@@ -272,3 +272,5 @@ D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-wi
 D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\CommitFileView.baml
 D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\PullRequestView.g.cs
 D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\PullRequestView.baml
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\MergeView.g.cs
+D:\repositories\It-hosting 2.0 — копия\It-hosting 2.0\obj\Debug\net6.0-windows\View\MergeView.baml

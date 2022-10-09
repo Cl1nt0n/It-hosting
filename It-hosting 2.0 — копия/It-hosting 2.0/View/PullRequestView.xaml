@@ -12,7 +12,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <Button Background="DimGray" Content="{Binding Branch.Title}" Command="{Binding OpeningBranchView}" Margin="0" Height="40"></Button>
+                            <Button Background="DimGray" Content="{Binding Branch.Title}" Command="{Binding OpeningMergeViewCommand}" Margin="0" Height="40"></Button>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
