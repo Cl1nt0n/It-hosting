@@ -15,11 +15,11 @@ namespace It_hosting_2._0.ViewModel
 {
     internal class CommitsViewModel
     {
-        private List<CommitViewModel> _commitsViewModels;
+        private ObservableCollection<CommitViewModel> _commitsViewModels;
 
         public CommitsViewModel(int fileId)
         {
-            CommitsViewModels = new List<CommitViewModel>();
+            CommitsViewModels = new ObservableCollection<CommitViewModel>();
             using (ithostingContext db = new ithostingContext())
             {
                 List<Commit> commits = db.Commits.Where(x => x.FileId == fileId).ToList();
@@ -32,7 +32,7 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
-        public List<CommitViewModel> CommitsViewModels
+        public ObservableCollection<CommitViewModel> CommitsViewModels
         {
             get => _commitsViewModels;
             set

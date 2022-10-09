@@ -16,7 +16,6 @@ namespace It_hosting_2._0.ViewModel
     {
         private CommandTemplate _openingRepositoriesCommand;
         private Window _window;
-
         private string _userName;
         private string _login;
         private string _imageSource;
@@ -33,6 +32,9 @@ namespace It_hosting_2._0.ViewModel
             ImageSource = "avatarka-pustaya-vk_0.jpg";
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #region Commands
         public CommandTemplate OpeningRepositoriesCommand
         {
             get
@@ -48,6 +50,7 @@ namespace It_hosting_2._0.ViewModel
                 return _openingRepositoriesCommand;
             }
         }
+        #endregion
 
         public User User
         {
@@ -89,8 +92,6 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private void OpenRepositories()
         {
             RepositoriesView repositoriesView = new RepositoriesView(); 
@@ -101,8 +102,6 @@ namespace It_hosting_2._0.ViewModel
 
             _window.Show();
         }
-
-        public void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) { }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

@@ -19,26 +19,31 @@ namespace It_hosting_2._0.ViewModel
         private CommandTemplate _openingCreatingRepositoryCommand;
         private Window _window;
         private User _user;
-        private ICollection<Repository> _repositories;
+        private ObservableCollection<Repository> _repositories;
         private ObservableCollection<RepositoryStackPanelViewModel> _repositoriesView;
 
         public RepositoriesViewModel(Window window, User user)
         {
             _window = window;
             _user = user;
+            RepositoriesView = new ObservableCollection<RepositoryStackPanelViewModel>();
 
             using (ithostingContext db = new ithostingContext())
             {
-                _repositories = db.Repositories.Where(x => x.UserId == User.Id).ToList();
+                _repositories = new ObservableCollection<Repository>();
+                foreach (var item in db.Repositories.Where(x => x.UserId == User.Id).ToList())
+                {
+                    _repositories.Add(item);
+                }
             }
-
-            RepositoriesView = new ObservableCollection<RepositoryStackPanelViewModel>();
 
             foreach (var item in _repositories)
             {
                 RepositoriesView.Add(new RepositoryStackPanelViewModel(item, window));
             }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public User User
         {
@@ -60,7 +65,7 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
-        public ICollection<Repository> Repositories
+        public ObservableCollection<Repository> Repositories
         {
             get => _repositories;
             set
@@ -70,6 +75,7 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
+        #region Commands
         public CommandTemplate OpeningCreatingRepositoryCommand
         {
             get
@@ -85,7 +91,8 @@ namespace It_hosting_2._0.ViewModel
                 return _openingCreatingRepositoryCommand;
             }
         }
-        
+        #endregion
+
         private void OpenCreatingRepositoryWindow()
         {
             CreatingRepositoryView creatingRepositoryView = new CreatingRepositoryView();
@@ -99,7 +106,65 @@ namespace It_hosting_2._0.ViewModel
             _window.Show();
         }
 
+        public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    internal class RepositoryStackPanelViewModel
+    {
+        //private ICollection<Repository> _repositories;
+        //private User _user;
+        private Repository _repository;
+        private CommandTemplate _openingRepositoryCommand;
+        private Window _window;
+
+        public RepositoryStackPanelViewModel(Repository repository, Window window)
+#pragma warning restore CS8618 // Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Возможно, стоит объявить поле как допускающее значения NULL.
+        {
+            Repository = repository;
+            _window = window;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public Repository Repository
+        {
+            get => _repository;
+            set
+            {
+                _repository = value;
+                OnPropertyChanged(nameof(Repository));
+            }
+        }
+
+        #region Commands
+        public CommandTemplate OpeningRepositoryViewCommand
+        {
+            get
+            {
+                if (_openingRepositoryCommand == null)
+                {
+                    _openingRepositoryCommand = new CommandTemplate(obj =>
+                    {
+                        OpenRepositoryWindow();
+                    });
+                }
+
+                return _openingRepositoryCommand;
+            }
+        }
+        #endregion
+
+        private void OpenRepositoryWindow()
+        {
+            RepositoryView repositoryView = new RepositoryView();
+            RepositoryViewModel repositoryViewModel = new RepositoryViewModel(Repository, _window);
+
+            _window.Hide();
+
+            repositoryView.DataContext = repositoryViewModel;
+            repositoryView.ShowDialog();
+        }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

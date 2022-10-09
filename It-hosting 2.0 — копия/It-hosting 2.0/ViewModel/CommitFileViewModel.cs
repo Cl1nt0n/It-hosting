@@ -2,6 +2,7 @@
 using It_hosting_2._0.View;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -12,13 +13,13 @@ namespace It_hosting_2._0.ViewModel
 {
     internal class CommitFileViewModel
     {
-        private List<StringCommitFileViewModel> _commitFileStringsViewModels;
+        private ObservableCollection<StringCommitFileViewModel> _commitFileStringsViewModels;
         private string _fileTitle;
         private int _fileId;
 
         public CommitFileViewModel(string text)
         {
-            _commitFileStringsViewModels = new List<StringCommitFileViewModel>();
+            _commitFileStringsViewModels = new ObservableCollection<StringCommitFileViewModel>();
 
             List<string> strings = new List<string>();
             strings = text.Split("\n").ToList();
@@ -31,7 +32,7 @@ namespace It_hosting_2._0.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public List<StringCommitFileViewModel> CommitFileStringsViewModels
+        public ObservableCollection<StringCommitFileViewModel> CommitFileStringsViewModels
         {
             get => _commitFileStringsViewModels;
             set
@@ -73,7 +74,7 @@ namespace It_hosting_2._0.ViewModel
         public StringCommitFileViewModel(string str)
         {
             _fileString = str;
-            if (str.Contains("<span class='+'>") || str.Contains("</span>"))
+            if (str.Contains("<span class='+'>"))
             {
 
                 Background = "LimeGreen";

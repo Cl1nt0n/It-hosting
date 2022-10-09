@@ -20,7 +20,7 @@ namespace It_hosting_2._0.ViewModel
         private string _branchTitle;
         private Repository _repository;
         private Window _window;
-        private ICollection<Branch> _branches;
+        private ObservableCollection<Branch> _branches;
         private ObservableCollection<BranchesViewModel> _branchesViews;
 
         public RepositoryViewModel(Repository repository, Window window)
@@ -31,7 +31,11 @@ namespace It_hosting_2._0.ViewModel
 
             using (ithostingContext db = new ithostingContext())
             {
-                _branches = db.Branches.Where(x => x.RepositoryId == Repository.Id).ToList();
+                _branches = new ObservableCollection<Branch>();
+                foreach (var item in db.Branches.Where(x => x.RepositoryId == Repository.Id))
+                {
+                    _branches.Add(item);
+                }
             }
 
             foreach (var item in _branches)
@@ -70,6 +74,7 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
+        #region Commands
         public CommandTemplate CreatingBranch
         {
             get
@@ -85,6 +90,7 @@ namespace It_hosting_2._0.ViewModel
                 return _creatingBranch;
             }
         }
+        #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -5,6 +5,7 @@ using Microsoft.Win32;
 using my.utils;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -23,13 +24,13 @@ namespace It_hosting_2._0.ViewModel
         private Branch _branch;
         private CommandTemplate _uploadingFileCommand;
         private CommandTemplate _pullRequestOpeningCommand;
-        private List<FilesViewModel> _filesViewModels;
+        private ObservableCollection<FilesViewModel> _filesViewModels;
         private Window _window;
 
         public BranchViewModel(Window window, Branch branch)
         {
             Branch = branch;
-            FilesViewModels = new List<FilesViewModel>();
+            FilesViewModels = new ObservableCollection<FilesViewModel>();
             _window = window;
 
             using (ithostingContext db = new ithostingContext())
@@ -70,7 +71,7 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
-        public List<FilesViewModel> FilesViewModels
+        public ObservableCollection<FilesViewModel> FilesViewModels
         {
             get => _filesViewModels;
             set
@@ -103,12 +104,8 @@ namespace It_hosting_2._0.ViewModel
             PullRequestView pullRequestView = new PullRequestView();
             PullRequestViewModel pullRequestViewModel = new PullRequestViewModel(pullRequestView, Branch.RepositoryId, Branch.Id);
 
-            _window.Hide();
-
             pullRequestView.DataContext = pullRequestViewModel;
             pullRequestView.ShowDialog();
-
-            _window.Show();
         }
 
         public void UploadFile()

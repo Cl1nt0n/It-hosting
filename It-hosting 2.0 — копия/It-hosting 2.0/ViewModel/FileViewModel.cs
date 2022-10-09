@@ -11,12 +11,13 @@ using System.Collections.Immutable;
 using It_hosting_2._0.Model.Tools;
 using It_hosting_2._0.View;
 using Accessibility;
+using System.Collections.ObjectModel;
 
 namespace It_hosting_2._0.ViewModel
 {
     internal class FileViewModel
     {
-        private List<StringViewModel> _fileStringsViewModels;
+        private ObservableCollection<StringViewModel> _fileStringsViewModels;
         private CommandTemplate _commitsOpening;
         private string _fileTitle;
         private int _fileId;
@@ -25,7 +26,7 @@ namespace It_hosting_2._0.ViewModel
         public FileViewModel(string fileTitle, string text, int fileId, Window window)
         {
             _fileTitle = fileTitle;
-            _fileStringsViewModels = new List<StringViewModel>();
+            _fileStringsViewModels = new ObservableCollection<StringViewModel>();
             _fileId = fileId;
             _window = window;
 
@@ -56,7 +57,7 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
-        public List<StringViewModel> FileStringsViewModel
+        public ObservableCollection<StringViewModel> FileStringsViewModel
         {
             get => _fileStringsViewModels;
             set

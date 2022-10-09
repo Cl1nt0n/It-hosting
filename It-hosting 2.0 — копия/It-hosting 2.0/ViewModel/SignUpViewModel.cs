@@ -17,8 +17,6 @@ namespace It_hosting_2._0.ViewModel
     internal class SignUpViewModel
     {
         private CommandTemplate _addUserCommand;
-
-
         private string _userName;
         private string _login;
         private SecureString _password;
@@ -33,6 +31,8 @@ namespace It_hosting_2._0.ViewModel
                 OnPropertyChanged(nameof(UserName));
             }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string Login
         {
@@ -64,8 +64,7 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
-        #region Команды
-
+        #region Commands
         public CommandTemplate AddUserCommand
         {
             get
@@ -81,7 +80,6 @@ namespace It_hosting_2._0.ViewModel
                 return _addUserCommand;
             }
         }
-
         #endregion
 
         public void AddUser()
@@ -109,7 +107,9 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+        }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

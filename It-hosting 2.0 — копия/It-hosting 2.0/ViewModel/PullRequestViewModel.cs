@@ -3,6 +3,7 @@ using It_hosting_2._0.Models.DBModels;
 using It_hosting_2._0.View;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -14,14 +15,14 @@ namespace It_hosting_2._0.ViewModel
 {
     internal class PullRequestViewModel
     {
-        private List<PRBranchesViewModel> _PRBranchesViewModels;
+        private ObservableCollection<PRBranchesViewModel> _PRBranchesViewModels;
         private Repository _repository;
         private Window _window;
 
         public PullRequestViewModel(Window window, int repositoryId, int currentBranchId)
         {
 
-            PRBranchesViewModels = new List<PRBranchesViewModel>();
+            PRBranchesViewModels = new ObservableCollection<PRBranchesViewModel>();
             _window = window;
 
             using (ithostingContext db = new ithostingContext())
@@ -38,7 +39,7 @@ namespace It_hosting_2._0.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public List<PRBranchesViewModel> PRBranchesViewModels
+        public ObservableCollection<PRBranchesViewModel> PRBranchesViewModels
         {
             get => _PRBranchesViewModels;
             set
@@ -106,13 +107,13 @@ namespace It_hosting_2._0.ViewModel
 
         public void OpenMergeView()
         {
-            MergeView branchView = new MergeView();
-            MergeViewModel branchViewModel = new MergeViewModel(CurrentBranchId, Branch.Id, _window);
+            MergeView mergeView = new MergeView();
+            MergeViewModel mergeViewModel = new MergeViewModel(CurrentBranchId, Branch.Id, _window);
 
             _window.Hide();
 
-            branchView.DataContext = branchViewModel;
-            branchView.ShowDialog();
+            mergeView.DataContext = mergeViewModel;
+            mergeView.ShowDialog();
 
             _window.Show();
         }

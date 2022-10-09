@@ -24,11 +24,13 @@ namespace It_hosting_2._0.ViewModel
         private SecureString _securePassword;
         private User _user;
         private Window _window;
-
+        
         public SignInViewModel(Window window)
         {
             _window = window;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string Login
         {
@@ -60,6 +62,7 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
+        #region commands
         public CommandTemplate SigningUpCommand
         {
             get
@@ -92,8 +95,7 @@ namespace It_hosting_2._0.ViewModel
                 return _signingInCommand;
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
 
         private void OpenUserProfileView(User user)
         {
@@ -144,7 +146,7 @@ namespace It_hosting_2._0.ViewModel
             SignUpView signUpWindow = new SignUpView();
             SignUpViewModel signUpViewModel = new SignUpViewModel();
 
-            _window.Hide();
+            _window.Close();
 
             signUpWindow.DataContext = signUpViewModel;
             signUpWindow.ShowDialog();
@@ -152,7 +154,9 @@ namespace It_hosting_2._0.ViewModel
             _window.Show();
         }
 
-        public void OnClosing(object sender, System.ComponentModel.CancelEventArgs e) { }
+        public void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+        }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
