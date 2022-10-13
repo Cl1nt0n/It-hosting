@@ -81,9 +81,8 @@ namespace It_hosting_2._0.ViewModel
                     {
                         File oldFile = secondBranchFiles.Where(x => x.Title == item.Title).First();
                         string newFileText = firstBranchFiles.Where(x => x.Title == oldFile.Title).First().Text;
-                        db.Files.Where(x => x.Id == oldFile.Id).First().Text = newFileText;
-                        db.SaveChanges();
                         db.Commits.Add(new Commit { Text = MakeCommit(oldFile.Text, newFileText), CreatingDate = DateTime.Now, FileId = oldFile.Id});
+                        db.Files.Where(x => x.Id == oldFile.Id).First().Text = newFileText;
                         db.SaveChanges();
                     }
                     else
@@ -105,7 +104,8 @@ namespace It_hosting_2._0.ViewModel
 
             int[] a_codes = Diff.DiffCharCodes(a_line, true);
             int[] b_codes = Diff.DiffCharCodes(b_line, true);
-            Diff.Item[] diffs = Diff.DiffInt(a_codes, b_codes);
+            Diff diff = new Diff();
+            Diff.Item[] diffs = diff.DiffInt(a_codes, b_codes);
 
             int pos = 0;
             for (int n = 0; n < diffs.Length; n++)

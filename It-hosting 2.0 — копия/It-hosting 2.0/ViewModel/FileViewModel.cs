@@ -90,14 +90,14 @@ namespace It_hosting_2._0.ViewModel
         private void OpenCommitsView()
         {
             CommitsView commitsView = new CommitsView();
-            CommitsViewModel commitsViewModel = new CommitsViewModel(FileId);
+            CommitsViewModel commitsViewModel = new CommitsViewModel(FileId, commitsView);
 
             _window.Hide();
             
             commitsView.DataContext = commitsViewModel;
             commitsView.ShowDialog();
 
-            _window.Show();
+            _window.ShowDialog();
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>

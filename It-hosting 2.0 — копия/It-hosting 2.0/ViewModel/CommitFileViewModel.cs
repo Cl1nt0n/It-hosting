@@ -1,5 +1,6 @@
 ﻿using It_hosting_2._0.Model.Tools;
 using It_hosting_2._0.View;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,9 +25,47 @@ namespace It_hosting_2._0.ViewModel
             List<string> strings = new List<string>();
             strings = text.Split("\n").ToList();
 
-            for (int i = 0; i < strings.Count; i++)
+            List<bool> checkList = CheckIsStringChanged(strings[0]);
+            bool isAddStringOver = checkList[2];
+            bool isRemoveStringOver = checkList[1];
+            bool isChanged = checkList[0];
+
+            strings[0] = strings[0].Replace("<span class='-'>", "<->〈");
+            strings[0] = strings[0].Replace("<span class='+'>", "<+>〈");
+            strings[0] = strings[0].Replace("</span>", "〉<end>");
+
+            if (isChanged)
             {
-                _commitFileStringsViewModels.Add(new StringCommitFileViewModel($"{i + 1}.  " + strings[i]));
+                _commitFileStringsViewModels.Add(new StringCommitFileViewModel($"{1}.  " + strings[0], true));
+            }
+            else
+            {
+                _commitFileStringsViewModels.Add(new StringCommitFileViewModel($"{1}.  " + strings[0], false));
+            }
+
+            for (int i = 1; i < strings.Count; i++)
+            {
+                checkList = CheckIsStringChanged(strings[i]);
+                isChanged = checkList[0];
+
+                strings[i] = strings[i].Replace("<span class='-'>", "<->〈");
+                strings[i] = strings[i].Replace("<span class='+'>", "<+>〈");
+                strings[i] = strings[i].Replace("</span>", "〉<end>");
+
+                if (isChanged || !isRemoveStringOver || !isAddStringOver)
+                {
+                    _commitFileStringsViewModels.Add(new StringCommitFileViewModel($"{i + 1}.  " + strings[i], true));
+                    if (!isRemoveStringOver || !isAddStringOver)
+                    {
+                        continue;
+                    }
+                }
+                else
+                {
+                    _commitFileStringsViewModels.Add(new StringCommitFileViewModel($"{i + 1}.  " + strings[i], false));
+                }
+                isAddStringOver = checkList[2];
+                isRemoveStringOver = checkList[1];
             }
         }
 
@@ -62,6 +101,56 @@ namespace It_hosting_2._0.ViewModel
             }
         }
 
+        private List<bool> CheckIsStringChanged(string str)
+        {
+            bool isAddStringOver = false;
+            bool isRemoveStringOver = false;
+            bool isChanged = false;
+
+
+            //for (int i = 0; i < strings.Count; i++)
+            //{
+            if (str.Contains("<span class='+'>") || str.Contains("<span class='-'>") || str.Contains("</span>"))
+            {
+                isChanged = true;
+                if (str.Contains("<span class='+'>"))
+                {
+                    string temp = "";
+                    for (int j = str.IndexOf("<span class='+'>"); j < str.Length; j++)
+                    {
+                        temp += str[j].ToString();
+                        if (temp.Contains("</span>"))
+                        {
+                            isAddStringOver = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (str.Contains("<span class='-'>"))
+                {
+                    string temp = "";
+                    for (int j = str.IndexOf("<span class='-'>"); j < str.Length; j++)
+                    {
+                        temp += str[j].ToString();
+                        if (temp.Contains("</span>"))
+                        {
+                            isRemoveStringOver = true;
+                            break;
+                        }
+                    }
+                }
+                //}
+            }
+            if (isChanged == false)
+            {
+                isAddStringOver = true;
+                isRemoveStringOver = true;
+            }
+
+            return new List<bool> { isChanged, isRemoveStringOver, isAddStringOver };
+        }
+
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
@@ -71,24 +160,16 @@ namespace It_hosting_2._0.ViewModel
         private string _fileString;
         private string _background;
 
-        public StringCommitFileViewModel(string str)
+        public StringCommitFileViewModel(string str, bool isChanged)
         {
             _fileString = str;
-            if (str.Contains("<span class='+'>"))
+            if (isChanged)
             {
-
-                Background = "LimeGreen";
+                Background = "Yellow";
             }
             else
             {
-                if (str.Contains("<span class='-'>") && str.Contains("<span class='+'>") != true)
-                {
-                    Background = "Firebrick";
-                }
-                else
-                {
-                    Background = "DimGray";
-                }
+                Background = "DimGray";
             }
         }
 

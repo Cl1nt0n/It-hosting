@@ -7,13 +7,13 @@
         mc:Ignorable="d"
         Title="SignUpView" Height="450" Width="800">
     <StackPanel Background="DimGray">
-        <Label Margin="380 100 360 0">Login</Label>
+        <Label Margin="0 100 0 0" HorizontalAlignment="Center">Login</Label>
         <TextBox Text="{Binding Path=Login}" Margin="250 0 250 0" Background="LightGray"/>
-        <Label Margin="370 0 350 0">Nickname</Label>
+        <Label HorizontalAlignment="Center">Nickname</Label>
         <TextBox Text="{Binding Path=UserName}" Margin="250 0 250 0" Background="LightGray"/>
-        <Label Margin="370 0 350 0">Password</Label>
+        <Label HorizontalAlignment="Center">Password</Label>
         <PasswordBox x:Name="PasswordBox" Margin="250 0 250 0" PasswordChanged="PasswordBox_PasswordChanged" Background="LightGray"/>
-        <Label Margin="355 0 330 0">Repeat password</Label>
+        <Label HorizontalAlignment="Center">Repeat password</Label>
         <PasswordBox x:Name="RepeatPasswordBox" PasswordChanged="RepeatPasswordBox_PasswordChanged" Margin="250 0 250 0" Background="LightGray"/>
         <Button Command="{Binding AddUserCommand}" Margin="250 5 250 -30">Create account</Button>
     </StackPanel>

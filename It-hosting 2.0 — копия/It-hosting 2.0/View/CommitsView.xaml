@@ -7,16 +7,14 @@
         mc:Ignorable="d"
         Title="CommitsView" Height="450" Width="800">
     <Grid Background="DimGray">
-        <StackPanel>
-            <ListBox Grid.Row="1" ItemsSource="{Binding CommitsViewModels}" Grid.Column="1" HorizontalContentAlignment="Stretch" Background="DimGray">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="0">
-                            <Button Background="DimGray" Command="{Binding OpeningCommitFileCommand}" Content="{Binding Path=Date}" Margin="0" Height="40"></Button>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </StackPanel>
+        <ListBox Grid.Row="1" ItemsSource="{Binding CommitsViewModels}" Grid.Column="1" HorizontalContentAlignment="Stretch" Background="DimGray">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="0">
+                        <Button Background="DimGray" Command="{Binding OpeningCommitFileCommand}" Content="{Binding Path=Date}" Margin="0" Height="40"></Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

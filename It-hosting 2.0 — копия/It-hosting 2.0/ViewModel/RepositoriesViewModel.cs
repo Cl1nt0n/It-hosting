@@ -103,7 +103,7 @@ namespace It_hosting_2._0.ViewModel
             creatingRepositoryView.DataContext = creatingRepositoryViewModel;
             creatingRepositoryView.ShowDialog();
 
-            _window.Show();
+            _window.ShowDialog();
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
@@ -158,12 +158,14 @@ namespace It_hosting_2._0.ViewModel
         private void OpenRepositoryWindow()
         {
             RepositoryView repositoryView = new RepositoryView();
-            RepositoryViewModel repositoryViewModel = new RepositoryViewModel(Repository, _window);
+            RepositoryViewModel repositoryViewModel = new RepositoryViewModel(Repository, repositoryView);
 
             _window.Hide();
 
             repositoryView.DataContext = repositoryViewModel;
             repositoryView.ShowDialog();
+
+            _window.ShowDialog();
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>

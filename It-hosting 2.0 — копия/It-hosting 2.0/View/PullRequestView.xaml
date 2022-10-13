@@ -7,16 +7,14 @@
         mc:Ignorable="d"
         Title="PullRequestView" Height="450" Width="800">
     <Grid Background="DimGray">
-        <StackPanel>
-            <ListBox Margin="0 20 0 0" ItemsSource="{Binding PRBranchesViewModels}" HorizontalContentAlignment="Stretch" Background="DimGray">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <Button Background="DimGray" Content="{Binding Branch.Title}" Command="{Binding OpeningMergeViewCommand}" Margin="0" Height="40"></Button>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </StackPanel>
+        <ListBox Margin="0 20 0 0" ItemsSource="{Binding PRBranchesViewModels}" HorizontalContentAlignment="Stretch" Background="DimGray">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Button Background="DimGray" Content="{Binding Branch.Title}" Command="{Binding OpeningMergeViewCommand}" Margin="0" Height="40"></Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

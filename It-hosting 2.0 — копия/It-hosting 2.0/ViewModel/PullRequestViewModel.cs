@@ -115,7 +115,7 @@ namespace It_hosting_2._0.ViewModel
             mergeView.DataContext = mergeViewModel;
             mergeView.ShowDialog();
 
-            _window.Show();
+            _window.ShowDialog();
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>

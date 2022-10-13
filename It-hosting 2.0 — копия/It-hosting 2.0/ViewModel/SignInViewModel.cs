@@ -109,7 +109,7 @@ namespace It_hosting_2._0.ViewModel
                 userProfileView.DataContext = userProfileViewModel;
                 userProfileView.ShowDialog();
 
-                _window.Show();
+                _window.ShowDialog();
             }
             else
             {
@@ -146,12 +146,12 @@ namespace It_hosting_2._0.ViewModel
             SignUpView signUpWindow = new SignUpView();
             SignUpViewModel signUpViewModel = new SignUpViewModel();
 
-            _window.Close();
+            _window.Hide();
 
             signUpWindow.DataContext = signUpViewModel;
             signUpWindow.ShowDialog();
 
-            _window.Show();
+            _window.ShowDialog();
         }
 
         public void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)

@@ -97,10 +97,12 @@ namespace It_hosting_2._0.ViewModel
             RepositoriesView repositoriesView = new RepositoriesView(); 
             RepositoriesViewModel repositoriesViewModel = new RepositoriesViewModel(repositoriesView, User);
 
+            _window.Hide();
+
             repositoriesView.DataContext = repositoriesViewModel;
             repositoriesView.ShowDialog();
 
-            _window.Show();
+            _window.ShowDialog();
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>

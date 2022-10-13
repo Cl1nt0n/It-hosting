@@ -40,7 +40,7 @@ namespace It_hosting_2._0.ViewModel
 
                 foreach (var item in files)
                 {
-                    FilesViewModels.Add(new FilesViewModel(item));
+                    FilesViewModels.Add(new FilesViewModel(item, _window));
                 }
             }
         }
@@ -104,8 +104,12 @@ namespace It_hosting_2._0.ViewModel
             PullRequestView pullRequestView = new PullRequestView();
             PullRequestViewModel pullRequestViewModel = new PullRequestViewModel(pullRequestView, Branch.RepositoryId, Branch.Id);
 
+            _window.Hide();
+
             pullRequestView.DataContext = pullRequestViewModel;
             pullRequestView.ShowDialog();
+
+            _window.ShowDialog();
         }
 
         public void UploadFile()
@@ -147,7 +151,8 @@ namespace It_hosting_2._0.ViewModel
 
             int[] a_codes = Diff.DiffCharCodes(a_line, true);
             int[] b_codes = Diff.DiffCharCodes(b_line, true);
-            Diff.Item[] diffs = Diff.DiffInt(a_codes, b_codes);
+            Diff diff = new Diff();
+            Diff.Item[] diffs = diff.DiffInt(a_codes, b_codes);
 
             int pos = 0;
             for (int n = 0; n < diffs.Length; n++)
@@ -212,11 +217,13 @@ namespace It_hosting_2._0.ViewModel
         private File _file;
         private string _fileTtile;
         private CommandTemplate _openingFile;
+        private Window _window;
 
-        public FilesViewModel(File file)
+        public FilesViewModel(File file, Window window)
         {
             _file = file;
             FileTitle = file.Title;
+            _window = window;
         }
 
         public File File
@@ -262,8 +269,12 @@ namespace It_hosting_2._0.ViewModel
             FileView fileView = new FileView();
             FileViewModel fileViewModel = new FileViewModel(File.Title, File.Text, File.Id, fileView);
 
+            _window.Hide();
+
             fileView.DataContext = fileViewModel;
             fileView.ShowDialog();
+
+            _window.ShowDialog();
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>

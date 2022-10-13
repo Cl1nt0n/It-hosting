@@ -290,7 +290,7 @@ namespace my.utils
         /// <param name="ArrayA">A-version of the numbers (usualy the old one)</param>
         /// <param name="ArrayB">B-version of the numbers (usualy the new one)</param>
         /// <returns>Returns a array of Items that describe the differences.</returns>
-        public static Item[] DiffInt(int[] ArrayA, int[] ArrayB)
+        public Item[] DiffInt(int[] ArrayA, int[] ArrayB)
         {
             // The A-Version of the data (original data) to be compared.
             DiffData DataA = new DiffData(ArrayA);

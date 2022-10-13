@@ -166,10 +166,14 @@ namespace It_hosting_2._0.ViewModel
         public void OpenBranchView()
         {
             BranchView branchView = new BranchView();
-            BranchViewModel branchViewModel = new BranchViewModel(_window, Branch);
+            BranchViewModel branchViewModel = new BranchViewModel(branchView, Branch);
+
+            _window.Hide();
 
             branchView.DataContext = branchViewModel;
             branchView.ShowDialog();
+
+            _window.ShowDialog();
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = "") =>
