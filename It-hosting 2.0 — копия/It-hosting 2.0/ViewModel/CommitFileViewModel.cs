@@ -23,6 +23,8 @@ namespace It_hosting_2._0.ViewModel
             _commitFileStringsViewModels = new ObservableCollection<StringCommitFileViewModel>();
 
             List<string> strings = new List<string>();
+            text = text.Replace("<span class='+'>\r\n", "\n<span class='+'>");
+            text = text.Replace("<span class='-'>\r\n", "\n<span class='-'>");
             strings = text.Split("\n").ToList();
 
             List<bool> checkList = CheckIsStringChanged(strings[0]);
@@ -30,9 +32,9 @@ namespace It_hosting_2._0.ViewModel
             bool isRemoveStringOver = checkList[1];
             bool isChanged = checkList[0];
 
-            strings[0] = strings[0].Replace("<span class='-'>", "<->〈");
-            strings[0] = strings[0].Replace("<span class='+'>", "<+>〈");
-            strings[0] = strings[0].Replace("</span>", "〉<end>");
+            strings[0] = strings[0].Replace("<span class='-'>", "-〈");
+            strings[0] = strings[0].Replace("<span class='+'>", "+〈");
+            strings[0] = strings[0].Replace("</span>", "〉");
 
             if (isChanged)
             {
@@ -48,9 +50,9 @@ namespace It_hosting_2._0.ViewModel
                 checkList = CheckIsStringChanged(strings[i]);
                 isChanged = checkList[0];
 
-                strings[i] = strings[i].Replace("<span class='-'>", "<->〈");
-                strings[i] = strings[i].Replace("<span class='+'>", "<+>〈");
-                strings[i] = strings[i].Replace("</span>", "〉<end>");
+                strings[i] = strings[i].Replace("<span class='-'>", "-〈");
+                strings[i] = strings[i].Replace("<span class='+'>", "+〈");
+                strings[i] = strings[i].Replace("</span>", "〉");
 
                 if (isChanged || !isRemoveStringOver || !isAddStringOver)
                 {
